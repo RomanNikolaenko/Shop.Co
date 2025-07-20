@@ -19,6 +19,8 @@
       "^app/*": ["./app/*"],
       "^core": ["./app/core"],
       "^core/*": ["./app/core/*"],
+      "^environments": ["./app/environments"],
+      "^environments/*": ["./app/environments/*"],
       "^features": ["./app/features"],
       "^features/*": ["./app/features/*"],
       "^layouts": ["./app/layouts"],

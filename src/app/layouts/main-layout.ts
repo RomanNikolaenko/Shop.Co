@@ -8,9 +8,10 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule],
   template: `
     <header><h1>Main Layout Header</h1></header>
-    <main><router-outlet /></main>
+    <main class="wrapper"><router-outlet /></main>
     <footer><p>Footer</p></footer>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'wrapper' },
 })
 export class MainLayout {}

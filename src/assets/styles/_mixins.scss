@@ -1,5 +1,3 @@
-@use "sass:math";
-
 @mixin fluid-text($maxSize, $minSize, $maxWidth: 1640, $minWidth: 320) {
   font-size: clamp(
     #{calc($minSize / 16) + rem},

@@ -1,5 +1,5 @@
-@use "../../../assets/styles/mixins" as *;
-@use "../../../assets/styles/functions" as *;
+@use "styles/mixins" as *;
+@use "styles/functions" as *;
 
 :host {
   display: flex;

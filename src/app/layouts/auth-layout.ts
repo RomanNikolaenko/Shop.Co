@@ -4,13 +4,10 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  selector: 'app-main-layout',
+  selector: 'app-auth-layout',
   imports: [CommonModule, RouterModule],
-  template: `
-    <header><h1>Auth Layout Header</h1></header>
-    <main><router-outlet /></main>
-    <footer><p>Footer</p></footer>
-  `,
+  template: ' <main class="wrapper"><router-outlet /></main> ',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'wrapper' },
 })
 export class AuthLayout {}

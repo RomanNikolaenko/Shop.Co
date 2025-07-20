@@ -2,13 +2,13 @@
   <div class="error__container">
     <p class="error__404">404</p>
 
-    <h1 class="error__title">hjhj</h1>
+    <h1 class="error__title">{{ "notFound.title" | translate }}</h1>
 
     <a
       [routerLink]="[STATIC_ROUTES.HOME.RouterLink]"
       class="error__btn btn btn__blue"
     >
-      ghkh
+      {{ "goHome" | translate }}
     </a>
 
     <div class="error__copyright">

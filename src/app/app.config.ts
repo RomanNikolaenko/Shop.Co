@@ -1,4 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  provideHttpClient,
+  withFetch,
+} from '@angular/common/http';
 import {
   ApplicationConfig,
   importProvidersFrom,
@@ -46,7 +51,9 @@ export const appConfig: ApplicationConfig = {
       withPreloading(PreloadAllModules),
       inMemoryScrollingFeature,
     ),
+    provideHttpClient(withFetch()),
     importProvidersFrom(
+      HttpClientModule,
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,

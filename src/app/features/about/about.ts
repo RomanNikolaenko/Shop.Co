@@ -7,5 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './about.html',
   styleUrl: './about.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'wrapper' },
 })
 export class About {}
