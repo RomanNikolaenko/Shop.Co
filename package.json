@@ -1,0 +1,75 @@
+{
+  "name": "shop.co",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "serve:ssr:shopCo": "node --no-deprecation dist/ShopCo/server/server.mjs",
+    "prepare": "npx lefthook install",
+    "lint:prettier": "prettier --check .",
+    "lint:prettier:fix": "prettier --write .",
+    "lint:style": "stylelint \"src/**/*.scss\"",
+    "lint:style:fix": "stylelint \"src/**/*.scss\" --fix",
+    "lint:eslint": "eslint . --ext .ts,.js,.tsx,.jsx",
+    "lint:eslint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
+    "lint:all": "npm run lint:prettier:fix && npm run lint:style:fix && npm run lint:eslint:fix"
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "dependencies": {
+    "@angular/common": "^20.1.0",
+    "@angular/compiler": "^20.1.0",
+    "@angular/core": "^20.1.0",
+    "@angular/forms": "^20.1.0",
+    "@angular/platform-browser": "^20.1.0",
+    "@angular/platform-server": "^20.1.0",
+    "@angular/router": "^20.1.0",
+    "@angular/ssr": "^20.1.0",
+    "express": "^5.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^20.1.0",
+    "@angular/cli": "^20.1.0",
+    "@angular/compiler-cli": "^20.1.0",
+    "@evilmartians/lefthook": "^1.12.2",
+    "@types/express": "^5.0.1",
+    "@types/jasmine": "~5.1.0",
+    "@types/node": "^20.17.19",
+    "@typescript-eslint/eslint-plugin": "^8.36.0",
+    "@typescript-eslint/parser": "^8.36.0",
+    "eslint": "^8.57.1",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.6.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "jasmine-core": "~5.8.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "^3.6.2",
+    "stylelint": "^16.21.1",
+    "stylelint-config-recommended-scss": "^15.0.1",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-order": "^7.0.0",
+    "stylelint-scss": "^6.12.1",
+    "typescript": "~5.8.2"
+  }
+}
