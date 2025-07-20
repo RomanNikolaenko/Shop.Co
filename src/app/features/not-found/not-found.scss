@@ -1,13 +1,6 @@
 @use "styles/mixins" as *;
 @use "styles/functions" as *;
 
-:host {
-  display: flex;
-  flex: 1 1 auto;
-  justify-content: center;
-  align-items: center;
-}
-
 .error {
   width: 100%;
 
@@ -20,14 +13,13 @@
   }
 
   &__404 {
-    margin-bottom: rem(16);
+    margin-bottom: rem(8);
     font-weight: 700;
 
     @include fluid-text(97, 72, 768);
   }
 
   &__title {
-    margin-bottom: rem(16);
     font-weight: 400;
     text-align: center;
 
@@ -40,6 +32,7 @@
   }
 
   &__btn {
+    min-width: rem(240);
     margin-top: rem(24);
   }
 

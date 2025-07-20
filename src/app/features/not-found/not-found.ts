@@ -12,6 +12,7 @@ import { STATIC_ROUTES } from '^app/core/static-routes';
   styleUrl: './not-found.scss',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'wrapper' },
 })
 export class NotFound {
   protected year: number = Date.now();
