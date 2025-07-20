@@ -16,7 +16,15 @@
     "baseUrl": "./src",
     "paths": {
       "^app": ["./app"],
-      "^app/*": ["./app/*"]
+      "^app/*": ["./app/*"],
+      "^core": ["./app/core"],
+      "^core/*": ["./app/core/*"],
+      "^features": ["./app/features"],
+      "^features/*": ["./app/features/*"],
+      "^layouts": ["./app/layouts"],
+      "^layouts/*": ["./app/layouts/*"],
+      "^shared": ["./app/shared"],
+      "^shared/*": ["./app/shared/*"]
     }
   },
   "angularCompilerOptions": {
