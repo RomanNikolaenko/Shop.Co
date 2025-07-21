@@ -5,6 +5,7 @@
     "title": "The page you’re looking for can’t be found!"
   },
   "form": {
+    "passwordAriaLabel": "Toggle password visibility",
     "login": {
       "title": "Welcome",
       "text": "Please log in to your account"
@@ -26,7 +27,7 @@
       "minlength": "Minimum {{requiredLength}} characters (currently {{actualLength}})",
       "maxlength": "Maximum {{requiredLength}} characters",
       "email": "Invalid email format",
-      "pattern": "Invalid format",
+      "passwordPattern": "Password must be should contain numbers, special characters and uppercase letters.",
       "customServerError": "Server error: {{message}}"
     }
   }

@@ -16,8 +16,6 @@ import {
 } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
-import { ErrorAnim } from '^shared/animations/error';
-
 @Component({
   selector: 'form-field',
   standalone: true,
@@ -25,7 +23,6 @@ import { ErrorAnim } from '^shared/animations/error';
   templateUrl: './form-field.html',
   styleUrls: ['./form-field.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [ErrorAnim],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -68,7 +65,8 @@ export class FormField implements ControlValueAccessor, OnInit {
     this.onTouch = fn;
   }
 
-  typeInputPassword(): void {
+  typeInputPassword(event: Event): void {
+    event.stopPropagation();
     this.typeInputPswrd = !this.typeInputPswrd;
   }
 
@@ -97,7 +95,7 @@ export class FormField implements ControlValueAccessor, OnInit {
     case 'email':
       return this.translate.instant('form.errors.email');
     case 'pattern':
-      return this.translate.instant('form.errors.pattern');
+      return this.translate.instant('form.errors.passwordPattern');
     case 'customServerError':
       return this.translate.instant('form.errors.customServerError', {
         message: errorValue.message,

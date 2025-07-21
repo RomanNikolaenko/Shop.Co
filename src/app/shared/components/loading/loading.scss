@@ -8,16 +8,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(255 255 255 / 100%);
   width: 100%;
   height: 100%;
+  background: rgb(255 255 255 / 100%);
 
   &__spinner {
+    width: rem(60);
+    height: rem(60);
     border: rem(8) solid var(--color-light);
     border-top: rem(8) solid var(--color-gray-alt);
     border-radius: 50%;
-    width: rem(60);
-    height: rem(60);
     animation: spin 1s linear infinite;
   }
 
