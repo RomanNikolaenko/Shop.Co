@@ -1,6 +1,33 @@
 {
   "goHome": "Go home",
+  "send": "Send",
   "notFound": {
     "title": "The page you’re looking for can’t be found!"
+  },
+  "form": {
+    "login": {
+      "title": "Welcome",
+      "text": "Please log in to your account"
+    },
+    "create": {
+      "title": "Create account",
+      "text": "Please enter details"
+    },
+    "forgot": {
+      "title": "Forgot password",
+      "text": "Enter your registered email address. we’ll send you a code to reset your password"
+    },
+    "otp": {
+      "title": "Enter OTP",
+      "text": "We have share a code of your registered email address robertfox@example.com"
+    },
+    "errors": {
+      "required": "This field is required",
+      "minlength": "Minimum {{requiredLength}} characters (currently {{actualLength}})",
+      "maxlength": "Maximum {{requiredLength}} characters",
+      "email": "Invalid email format",
+      "pattern": "Invalid format",
+      "customServerError": "Server error: {{message}}"
+    }
   }
 }

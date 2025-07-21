@@ -13,8 +13,8 @@
   height: 100%;
 
   &__spinner {
-    border: rem(8) solid #f3f3f3;
-    border-top: rem(8) solid #3498db;
+    border: rem(8) solid var(--color-light);
+    border-top: rem(8) solid var(--color-gray-alt);
     border-radius: 50%;
     width: rem(60);
     height: rem(60);

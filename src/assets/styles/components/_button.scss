@@ -2,23 +2,33 @@
 @use "../mixins" as *;
 
 .btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  position: relative;
+
   border-radius: 100vmax;
-  padding: rem(16) rem(24);
+
   border: 1px solid transparent;
   user-select: none;
+  overflow: hidden;
+
+  &__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: rem(16) rem(24);
+    width: 100%;
+  }
 
   &__black {
     background-color: var(--color-dark);
     color: var(--color-light);
     border-color: var(--color-dark);
 
-    @include interactive {
-      color: var(--color-dark);
-      background-color: var(--color-light);
+    &:not(.btn__disabled) {
+      @include interactive {
+        color: var(--color-dark);
+        background-color: var(--color-light);
+      }
     }
   }
 
@@ -27,9 +37,11 @@
     color: var(--color-dark);
     border-color: var(--color-dark);
 
-    @include interactive {
-      color: var(--color-light);
-      background-color: var(--color-dark);
+    &:not(.btn__disabled) {
+      @include interactive {
+        color: var(--color-light);
+        background-color: var(--color-dark);
+      }
     }
   }
 
@@ -38,9 +50,50 @@
     color: var(--color-gray-alt);
     border-color: var(--color-gray);
 
-    @include interactive {
-      color: var(--color-dark);
-      background-color: var(--color-gray-alt);
+    &:not(.btn__disabled) {
+      @include interactive {
+        color: var(--color-dark);
+        background-color: var(--color-gray-alt);
+      }
     }
+  }
+
+  &__disabled {
+    background-color: var(--color-gray-alt);
+    color: var(--color-light);
+    border-color: var(--color-gray-alt);
+    cursor: not-allowed;
+
+    .btn__text {
+      opacity: 0.5;
+    }
+  }
+
+  &__load {
+    &::before {
+      content: "";
+      position: absolute;
+      top: calc(50% - rem(24) / 2);
+      left: calc(50% - rem(24) / 2);
+      isolation: isolate;
+      z-index: 4;
+      width: rem(24);
+      height: rem(24);
+      border: rem(2) solid var(--color-light);
+      border-top: rem(2) solid var(--color-dark);
+      border-radius: 50%;
+
+      animation: loadRotate 2s linear infinite;
+    }
+  }
+}
+
+@keyframes loadRotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }

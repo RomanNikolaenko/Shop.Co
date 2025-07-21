@@ -1,0 +1,113 @@
+@use "styles/mixins" as *;
+@use "styles/functions" as *;
+
+:host {
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(8);
+  width: 100%;
+
+  &__wrap {
+    position: relative;
+    width: 100%;
+  }
+
+  &__errors {
+    display: grid;
+    gap: rem(4);
+    font-size: rem(13);
+    text-indent: rem(14);
+    color: var(--error);
+    width: 100%;
+  }
+
+  &__hint {
+    font-size: rem(13);
+    width: 100%;
+    text-indent: rem(14);
+  }
+}
+
+.label-field {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: rem(1) solid var(--color-dark);
+  border-radius: rem(10);
+  // cursor: text;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+
+  // @include fluid("height", 56, 42, 1024);
+
+  // &__title {
+  //   position: absolute;
+  //   top: 50%;
+  //   left: rem(12);
+  //   color: inherit;
+  //   cursor: text;
+  //   pointer-events: none;
+  //   transition: all var(--transition-duration) var(--transition-timing-function);
+  //   will-change: transform;
+  //   transform: translateY(-50%) scale(1);
+  //   transform-origin: left top;
+
+  //   :focus-within &,
+  //   .label-field__active & {
+  //     transform: translateY(-110%) scale(0.7);
+  //   }
+  // }
+
+  // &__input {
+  //   padding: rem(12) rem(40) rem(6) rem(12);
+  //   border: none;
+  //   border-radius: inherit;
+  //   outline: none;
+  //   line-height: 1;
+  //   width: 100%;
+  //   height: 100%;
+  // }
+
+  // &__type {
+  //   position: absolute;
+  //   top: 50%;
+  //   right: rem(12);
+  //   transform: translateY(-50%);
+  //   color: var(--grey-input);
+  // }
+
+  // &__success {
+  //   border-color: var(--success);
+  //   color: var(--success);
+  // }
+
+  // &__error {
+  //   border-color: var(--error);
+  //   color: var(--error);
+
+  //   .label-field__input {
+  //     color: var(--error);
+  //   }
+  // }
+
+  // &:focus-within {
+  //   border-color: var(--color-gray);
+  // }
+
+  // @media (hover: hover) {
+  //   &:hover {
+  //     border-color: var(--color-gray);
+  //   }
+  // }
+
+  // @media (hover: none) {
+  //   &:active {
+  //     border-color: var(--color-gray);
+  //   }
+  // }
+}

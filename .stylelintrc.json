@@ -414,6 +414,7 @@
     "selector-max-compound-selectors": 3,
     "selector-no-qualifying-type": true,
     "selector-pseudo-element-no-unknown": true,
+    "selector-class-pattern": "^[a-z0-9\\-]+(__[a-z0-9\\-]+)?(--[a-z0-9\\-]+)?$",
     "media-feature-name-no-unknown": true,
     "at-rule-no-unknown": null,
     "scss/at-rule-no-unknown": true,
@@ -426,8 +427,8 @@
     "scss/at-extend-no-missing-placeholder": true,
     "scss/dollar-variable-pattern": "^[_a-z]+[a-zA-Z0-9-]*$",
     "scss/percent-placeholder-pattern": "^%[a-z]+[a-zA-Z0-9-]*$",
+    "scss/at-mixin-pattern": "^[a-z]+[a-zA-Z0-9-]*$",
     "scss/selector-no-redundant-nesting-selector": true,
-    "scss/no-duplicate-mixins": true,
-    "scss/at-mixin-pattern": "^[a-z]+[a-zA-Z0-9-]*$"
+    "scss/no-duplicate-mixins": true
   }
 }

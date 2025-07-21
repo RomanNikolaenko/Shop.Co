@@ -1,4 +1,4 @@
-@mixin fluid-text($property, $maxSize, $minSize, $maxWidth: 1440, $minWidth: 320) {
+@mixin fluid($property, $maxSize, $minSize, $maxWidth: 1440, $minWidth: 320) {
   #{$property}: clamp(
     #{calc($minSize / 16) + rem},
     calc(

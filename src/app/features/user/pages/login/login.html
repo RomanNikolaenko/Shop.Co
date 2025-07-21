@@ -1,9 +1,39 @@
 <section class="login user">
   <div class="login__container user__container container">
     <div class="login__bg user__bg"></div>
-    <form class="login__form user__form">
+    <form
+      class="login__form user__form"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+    >
       <h1 class="login__title user__title">Welcome</h1>
       <p class="login__subtitle user__subtitle">Please log in to continue</p>
+
+      <form-field
+        formControlName="email"
+        name="email"
+        label="Email"
+        [data]="form.get('email')!"
+        type="email"
+      ></form-field>
+
+      <form-field
+        formControlName="password"
+        name="password"
+        label="Пароль"
+        [data]="form.get('password')!"
+        type="password"
+      ></form-field>
+
+      <button
+        [disabled]="form.invalid || loading"
+        [class.btn__disabled]="form.invalid || loading"
+        [class.btn__load]="loading"
+        class="user__submit btn btn__black"
+        type="submit"
+      >
+        <span class="btn__text">{{ "send" | translate }}</span>
+      </button>
     </form>
   </div>
 </section>

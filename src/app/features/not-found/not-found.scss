@@ -16,14 +16,14 @@
     margin-bottom: rem(8);
     font-weight: 700;
 
-    @include fluid-text('font-size', 97, 72, 768);
+    @include fluid("font-size", 97, 72, 768);
   }
 
   &__title {
     font-weight: 400;
     text-align: center;
 
-    @include fluid-text('font-size', 40, 24, 768);
+    @include fluid("font-size", 40, 24, 768);
 
     @supports (text-wrap: balance) {
       max-width: rem(550);
@@ -41,6 +41,6 @@
     font-weight: 300;
     text-align: center;
 
-    @include fluid-text('font-size', 17, 15, 768);
+    @include fluid("font-size", 17, 15, 768);
   }
 }

@@ -4,7 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  @include fluid-text('font-size', 18, 16);
+  @include fluid("font-size", 18, 16);
 
   font-family: var(--font-family-base);
   font-weight: 400;
@@ -18,7 +18,7 @@ button,
 input,
 textarea,
 svg * {
-  transition-timing-function: ease-out;
+  transition-timing-function: var(--transition-timing-function);
   transition-duration: var(--transition-duration);
 }
 
@@ -36,22 +36,22 @@ h4 {
 
 h1,
 .h1 {
-  @include fluid-text('font-size', 60, 42);
+  @include fluid("font-size", 60, 42);
 }
 
 h2,
 .h2 {
-  @include fluid-text('font-size', 48, 36);
+  @include fluid("font-size", 48, 36);
 }
 
 h3,
 .h3 {
-  @include fluid-text('font-size', 30, 26);
+  @include fluid("font-size", 30, 26);
 }
 
 h4,
 .h4 {
-  @include fluid-text('font-size', 20, 18);
+  @include fluid("font-size", 20, 18);
 }
 
 .wrapper {

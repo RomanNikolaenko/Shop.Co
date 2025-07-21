@@ -1,0 +1,43 @@
+<fieldset class="field">
+  <div class="field__wrap">
+    <label
+      [class.label-field__active]="!!value"
+      [class.label-field__success]="data.valid && validation"
+      [class.label-field__error]="errorKeys.length"
+      class="field__label label-field"
+    >
+      <span class="label-field__title">{{ label }}</span>
+      <input
+        [(ngModel)]="value"
+        (ngModelChange)="onChange($event)"
+        (blur)="onTouch()"
+        [type]="typeInputPswrd ? type : 'text'"
+        [name]="name"
+        class="label-field__input"
+      />
+    </label>
+
+    @if (type === "password") {
+      <button
+        (click)="typeInputPassword()"
+        type="button"
+        class="label-field__type"
+        attr.aria-label="{{ 'auth.passwordAriaLabel' | translate }}"
+      >
+        {{ typeInputPswrd ? "👁️" : "🙈" }}
+      </button>
+    }
+  </div>
+
+  @if (errorKeys.length) {
+    <div class="field__errors">
+      @for (key of showAllErrors ? errorKeys : [errorKeys[0]]; track key) {
+        <span [@flyInBottom]>{{ getErrorMessage(key) }}</span>
+      }
+    </div>
+  }
+
+  @if (hint) {
+    <div class="field__hint">{{ hint }}</div>
+  }
+</fieldset>

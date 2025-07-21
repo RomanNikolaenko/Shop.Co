@@ -1,10 +1,13 @@
 :root {
+  --color-light: #ffffff;
   --color-dark: #191a23;
   --color-dark-alt: #292a32;
-  --color-light: #ffffff;
-  --color-accent: #b9ff66;
   --color-gray: #f3f3f3;
   --color-gray-alt: #898989;
+
+  --error: #e41212;
+  --warning: #ee8d33;
+  --success: #2bad34;
 
   --font-family-base: "Jost", sans-serif;
 
@@ -12,4 +15,5 @@
   --container-padding-x: 20px;
 
   --transition-duration: 0.25s;
+  --transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
 }

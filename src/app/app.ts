@@ -11,8 +11,8 @@ import {
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { Loading } from '^core/components/loading/loading';
-import { LanguageService } from '^core/services/language.service';
+import { Loading } from '^shared/components/loading/loading';
+import { LanguageService } from '^shared/services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +33,7 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
     setTimeout(() => {
       this.isLoading = false;
       this.cdr.markForCheck();
-    }, 500)
+    }, 500);
   };
 
   ngOnInit(): void {
