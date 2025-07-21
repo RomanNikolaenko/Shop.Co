@@ -30,6 +30,11 @@ export const STATIC_ROUTES = {
         RouterLink: '/user/forgot',
         Title: 'SHOP.CO | Forgot',
       },
+      OTP: {
+        Path: 'otp',
+        RouterLink: '/user/otp',
+        Title: 'SHOP.CO | Otp',
+      },
     },
   },
 

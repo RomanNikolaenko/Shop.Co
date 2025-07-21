@@ -20,6 +20,17 @@ export const userRoutes: Routes = [
         loadComponent: () =>
           import('./pages/register/register').then((m) => m.Register),
       },
+      {
+        path: `${STATIC_ROUTES.USER.CH.FORGOT.Path}`,
+        title: `${STATIC_ROUTES.USER.CH.FORGOT.Title}`,
+        loadComponent: () =>
+          import('./pages/forgot/forgot').then((m) => m.Forgot),
+      },
+      {
+        path: `${STATIC_ROUTES.USER.CH.OTP.Path}`,
+        title: `${STATIC_ROUTES.USER.CH.OTP.Title}`,
+        loadComponent: () => import('./pages/otp/otp').then((m) => m.Otp),
+      },
     ],
   },
 ];

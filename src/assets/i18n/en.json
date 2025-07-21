@@ -1,6 +1,7 @@
 {
   "goHome": "Go home",
   "send": "Send",
+  "back": "Back",
   "notFound": {
     "title": "The page you’re looking for can’t be found!"
   },
