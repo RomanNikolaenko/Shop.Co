@@ -1,5 +1,5 @@
-@mixin fluid-text($maxSize, $minSize, $maxWidth: 1640, $minWidth: 320) {
-  font-size: clamp(
+@mixin fluid-text($property, $maxSize, $minSize, $maxWidth: 1440, $minWidth: 320) {
+  #{$property}: clamp(
     #{calc($minSize / 16) + rem},
     calc(
       #{calc($minSize / 16) + rem} + (#{$maxSize} - #{$minSize}) *

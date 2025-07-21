@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './login.html',
-  styleUrl: './login.scss',
+  styleUrls: ['./login.scss', '../../user.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'wrapper' },
 })

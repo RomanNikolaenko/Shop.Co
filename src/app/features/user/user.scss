@@ -1,0 +1,39 @@
+@use 'styles/mixins' as *;
+@use 'styles/functions' as *;
+
+.user {
+  height: 100%;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    height: 100%;
+    gap: rem(16);
+  }
+
+  &__bg {
+    background-image: url('/assets/images/auth/login.jpg');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title {
+    @include fluid-text('font-size', 30, 24, 1024);
+    margin-block-end: rem(4);
+    text-align: center;
+  }
+  
+  &__subtitle {
+    @include fluid-text('font-size', 18, 16, 1024);
+    @include fluid-text('margin-block-end', 24, 16, 1024);
+    text-align: center;
+  }
+}
