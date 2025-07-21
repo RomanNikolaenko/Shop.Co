@@ -25,10 +25,25 @@
     @include tablet-above {
       display: block;
       height: 100%;
-      background-image: url("/assets/images/auth/login.jpg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: 100% auto;
+
+      &.login__bg {
+        background-image: url("/assets/images/auth/login.jpg");
+      }
+
+      &.register__bg {
+        background-image: url("/assets/images/auth/create.jpg");
+      }
+
+      &.forgot__bg {
+        background-image: url("/assets/images/auth/forgot.jpg");
+      }
+
+      &.otp__bg {
+        background-image: url("/assets/images/auth/otp.jpg");
+      }
     }
   }
 
@@ -73,5 +88,9 @@
     align-items: center;
     gap: rem(8);
     text-align: center;
+  }
+
+  &__submit {
+    min-width: rem(200);
   }
 }

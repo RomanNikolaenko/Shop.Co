@@ -59,7 +59,6 @@ export class LanguageService {
 
       return 'en';
     } else {
-      // На сервері повертаємо дефолтну мову або 'en'
       return 'en';
     }
   }

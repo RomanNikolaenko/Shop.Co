@@ -51,35 +51,16 @@
     transition: inherit;
   }
 
-  &:focus-visible {
+  @include interactive {
+    transition:
+      background-size 0.1s var(--transition-timing-function),
+      color 0.1s var(--transition-timing-function);
+    outline: none;
+
     & > span {
       color: currentColor;
       background-position: left bottom;
       background-size: 100% 2px;
-    }
-  }
-
-  @media (hover: hover) {
-    &:hover {
-      & > span {
-        color: currentColor;
-        background-position: left bottom;
-        background-size: 100% 2px;
-      }
-    }
-  }
-
-  @media (hover: none) {
-    &:active {
-      transition:
-        background-size 0.1s var(--transition-timing-function),
-        color 0.1s var(--transition-timing-function);
-
-      & > span {
-        color: currentColor;
-        background-position: left bottom;
-        background-size: 100% 2px;
-      }
     }
   }
 }

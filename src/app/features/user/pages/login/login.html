@@ -25,7 +25,7 @@
           [data]="form.get('email')!"
           formControlName="email"
           name="email"
-          label="Email"
+          label="{{ 'form.email' | translate }}"
           type="email"
           class="user__field"
         ></form-field>
@@ -34,7 +34,7 @@
           [data]="form.get('password')!"
           formControlName="password"
           name="password"
-          label="Пароль"
+          label="{{ 'form.password' | translate }}"
           type="password"
           class="login__field user__field"
         ></form-field>

@@ -8,8 +8,13 @@
     "passwordAriaLabel": "Toggle password visibility",
     "forgotPassword": "Forgot password?",
     "notAccount": "Don't have an account?",
-    "loginTitle": "Login",
+    "haveAccount": "Already have an account?",
+    "loginTitle": "Authorization",
     "registerTitle": "Register",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "password": "Password",
     "login": {
       "title": "Welcome",
       "text": "Please log in to your account"

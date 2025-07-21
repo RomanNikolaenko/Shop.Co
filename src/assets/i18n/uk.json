@@ -8,8 +8,13 @@
     "passwordAriaLabel": "Перемкнути видимість пароля",
     "forgotPassword": "Забули пароль?",
     "notAccount": "Не маєте облікового запису?",
+    "haveAccount": "Вже маєте обліковий запис?",
     "loginTitle": "Авторизація",
     "registerTitle": "Реєстрація",
+    "firstName": "Ім'я",
+    "lastName": "Прізвище",
+    "email": "Пошта",
+    "password": "Пароль",
     "login": {
       "title": "Ласкаво просимо",
       "text": "Увійдіть до свого облікового запису"

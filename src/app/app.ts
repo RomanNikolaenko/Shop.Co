@@ -33,7 +33,7 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
     setTimeout(() => {
       this.isLoading = false;
       this.cdr.markForCheck();
-    }, 500);
+    }, 200);
   };
 
   ngOnInit(): void {
