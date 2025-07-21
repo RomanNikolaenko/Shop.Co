@@ -63,3 +63,7 @@ h4,
     justify-content: center;
   }
 }
+
+.text-decoration {
+  @include textDecoration;
+}

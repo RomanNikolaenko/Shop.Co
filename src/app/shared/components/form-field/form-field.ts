@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
@@ -16,10 +17,18 @@ import {
 } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
+import { Icon } from '../icon/icon';
+
 @Component({
   selector: 'form-field',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    Icon,
+  ],
   templateUrl: './form-field.html',
   styleUrls: ['./form-field.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,6 +54,7 @@ export class FormField implements ControlValueAccessor, OnInit {
   protected forLabel: string = '';
 
   private readonly translate = inject(TranslateService);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   onChange: (value: string | number) => void = () => {};
   onTouch: () => void = () => {};
@@ -65,9 +75,9 @@ export class FormField implements ControlValueAccessor, OnInit {
     this.onTouch = fn;
   }
 
-  typeInputPassword(event: Event): void {
-    event.stopPropagation();
+  typeInputPassword(): void {
     this.typeInputPswrd = !this.typeInputPswrd;
+    this.cdr.markForCheck();
   }
 
   get errorKeys(): string[] {

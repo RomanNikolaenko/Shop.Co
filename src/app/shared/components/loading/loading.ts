@@ -8,6 +8,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   templateUrl: './loading.html',
   styleUrl: './loading.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.ngSkipHydration]': 'true',
+  },
 })
 export class Loading {
   @Input() show: boolean = false;

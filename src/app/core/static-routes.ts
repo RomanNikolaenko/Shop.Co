@@ -25,6 +25,11 @@ export const STATIC_ROUTES = {
         RouterLink: '/user/register',
         Title: 'SHOP.CO | Register',
       },
+      FORGOT: {
+        Path: 'forgot',
+        RouterLink: '/user/forgot',
+        Title: 'SHOP.CO | Forgot',
+      },
     },
   },
 

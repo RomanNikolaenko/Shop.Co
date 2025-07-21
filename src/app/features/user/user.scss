@@ -1,21 +1,46 @@
 @use "styles/mixins" as *;
 @use "styles/functions" as *;
+@use "styles/media" as *;
 
 .user {
   height: 100%;
 
   &__container {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: rem(16);
-    grid-template-columns: 1.45fr 1fr;
     height: 100%;
+
+    @include tablet-above {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+    }
   }
 
   &__bg {
-    background-image: url("/assets/images/auth/login.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% auto;
+    display: none;
+
+    @include tablet-above {
+      display: block;
+      height: 100%;
+      background-image: url("/assets/images/auth/login.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% auto;
+    }
+  }
+
+  &__wrap {
+    padding: rem(24) 0;
+  }
+
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: rem(8);
+    margin-block-end: rem(32);
   }
 
   &__form {
@@ -23,6 +48,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    max-width: rem(600);
+
+    @include fluid("gap", 24, 16, 1024);
   }
 
   &__title {
@@ -34,8 +63,15 @@
 
   &__subtitle {
     @include fluid("font-size", 18, 16, 1024);
-    @include fluid("margin-block-end", 24, 16, 1024);
 
+    text-align: center;
+  }
+
+  &__account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(8);
     text-align: center;
   }
 }

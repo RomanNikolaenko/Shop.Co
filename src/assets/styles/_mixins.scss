@@ -37,3 +37,49 @@
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
 }
+
+@mixin textDecoration() {
+  transition:
+    background-size var(--transition-duration) var(--transition-timing-function),
+    color var(--transition-duration) var(--transition-timing-function);
+
+  & > span {
+    background-image: linear-gradient(to right, currentColor, currentColor);
+    background-size: 0 2px;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    transition: inherit;
+  }
+
+  &:focus-visible {
+    & > span {
+      color: currentColor;
+      background-position: left bottom;
+      background-size: 100% 2px;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      & > span {
+        color: currentColor;
+        background-position: left bottom;
+        background-size: 100% 2px;
+      }
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      transition:
+        background-size 0.1s var(--transition-timing-function),
+        color 0.1s var(--transition-timing-function);
+
+      & > span {
+        color: currentColor;
+        background-position: left bottom;
+        background-size: 100% 2px;
+      }
+    }
+  }
+}

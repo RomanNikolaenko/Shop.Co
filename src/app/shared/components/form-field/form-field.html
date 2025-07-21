@@ -4,6 +4,7 @@
       [class.label-field__active]="!!value"
       [class.label-field__success]="data.valid && validation"
       [class.label-field__error]="errorKeys.length"
+      [class.label-field__padding]="type === 'password'"
       class="field__label label-field"
     >
       <input
@@ -19,12 +20,12 @@
 
     @if (type === "password") {
       <button
-        (click)="typeInputPassword($event)"
+        (click)="typeInputPassword()"
         type="button"
         class="label-field__type"
         attr.aria-label="{{ 'form.passwordAriaLabel' | translate }}"
       >
-        {{ typeInputPswrd ? "👁️" : "🙈" }}
+        <icon [name]="typeInputPswrd ? 'eye' : 'eye-hide'"></icon>
       </button>
     }
   </div>

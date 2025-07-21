@@ -1,0 +1,12 @@
+@use "styles/functions" as *;
+
+:host {
+  display: inline-block;
+  width: rem(24);
+  height: rem(24);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}

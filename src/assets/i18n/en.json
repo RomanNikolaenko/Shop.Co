@@ -6,6 +6,10 @@
   },
   "form": {
     "passwordAriaLabel": "Toggle password visibility",
+    "forgotPassword": "Forgot password?",
+    "notAccount": "Don't have an account?",
+    "loginTitle": "Login",
+    "registerTitle": "Register",
     "login": {
       "title": "Welcome",
       "text": "Please log in to your account"

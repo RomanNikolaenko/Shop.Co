@@ -1,14 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { STATIC_ROUTES } from '^app/core/static-routes';
 import { FormField } from '^shared/components/form-field/form-field';
+import { Icon } from '^shared/components/icon/icon';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormField, TranslateModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormField,
+    TranslateModule,
+    RouterLink,
+    Icon,
+  ],
   templateUrl: './login.html',
   styleUrls: ['./login.scss', '../../user.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,6 +26,7 @@ import { FormField } from '^shared/components/form-field/form-field';
 })
 export class Login {
   private readonly formBuilder = inject(FormBuilder);
+  protected STATIC_ROUTES = STATIC_ROUTES;
 
   protected loading = false;
 
