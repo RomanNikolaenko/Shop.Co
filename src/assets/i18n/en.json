@@ -30,7 +30,8 @@
     },
     "otp": {
       "title": "Enter OTP",
-      "text": "We have share a code of your registered email address robertfox@example.com"
+      "text": "We have share a code of your registered email address robertfox@example.com",
+      "error": "OTP code is incorrect or incomplete"
     },
     "errors": {
       "required": "This field is required",

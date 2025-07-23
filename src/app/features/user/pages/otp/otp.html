@@ -24,10 +24,32 @@
           </p>
         </div>
 
+        <div class="otp__wrap">
+          <otp-input
+            [length]="6"
+            [pattern]="otpPattern"
+            (blur)="onOtpBlur()"
+            [showError]="
+              (form.get('otp')?.invalid ?? false) &&
+              (isOtpTouched || isFormSubmitted)
+            "
+            formControlName="otp"
+          >
+          </otp-input>
+
+          <p
+            *ngIf="
+              form.get('otp')?.invalid && (isOtpTouched || isFormSubmitted)
+            "
+            class="otp__error"
+          >
+            {{ "form.otp.error" | translate }}
+          </p>
+        </div>
+
         <button
-          [disabled]="form.invalid || loading"
-          [class.btn__disabled]="form.invalid || loading"
-          [class.btn__load]="loading"
+          [disabled]="form.invalid"
+          [class.btn__disabled]="form.invalid"
           class="user__submit btn btn__black"
           type="submit"
         >

@@ -1,14 +1,16 @@
-$desktop-above: 1280px;
-$desktop: 1279.98px;
+@use "./functions" as *;
 
-$tablet-above: 1024px;
-$tablet: 1023.98px;
+$desktop-above: rem(1280);
+$desktop: rem(1279.98);
 
-$mobile-above: 768px;
-$mobile: 767.98px;
+$tablet-above: rem(1024);
+$tablet: rem(1023.98);
 
-$mobile-s-above: 480px;
-$mobile-s: 479.98px;
+$mobile-above: rem(768);
+$mobile: rem(767.98);
+
+$mobile-s-above: rem(480);
+$mobile-s: rem(479.98);
 
 @mixin desktop-above {
   @media (min-width: $desktop-above) {
