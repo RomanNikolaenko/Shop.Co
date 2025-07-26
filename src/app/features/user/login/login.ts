@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { STATIC_ROUTES } from '^core/static-routes';
+import { Popup } from '^services/popup';
 import { FormField } from '^shared/components/form-field/form-field';
 import { Icon } from '^shared/components/icon/icon';
 
@@ -26,6 +27,7 @@ import { Icon } from '^shared/components/icon/icon';
 })
 export class Login {
   private readonly formBuilder = inject(FormBuilder);
+  private readonly popup = inject(Popup);
   protected STATIC_ROUTES = STATIC_ROUTES;
 
   protected loading = false;

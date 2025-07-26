@@ -5,8 +5,11 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { STATIC_ROUTES } from '^core/static-routes';
+import { Popup } from '^services/popup';
 import { Icon } from '^shared/components/icon/icon';
 import { OtpInput } from '^shared/components/otp-input/otp-input';
+
+import { Success } from './success/success';
 
 @Component({
   selector: 'app-otp',
@@ -26,6 +29,7 @@ import { OtpInput } from '^shared/components/otp-input/otp-input';
 })
 export class Otp {
   private readonly formBuilder = inject(FormBuilder);
+  private readonly popup = inject(Popup);
   protected STATIC_ROUTES = STATIC_ROUTES;
 
   protected loading = false;
@@ -44,7 +48,7 @@ export class Otp {
   protected onSubmit() {
     this.isFormSubmitted = true;
 
-    if (this.form.invalid) return;
+    this.popup.open(Success);
 
     this.loading = true;
     console.log('✅ Form submitted:', this.form.value);

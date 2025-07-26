@@ -7,11 +7,11 @@ import { RouterModule } from '@angular/router';
   selector: 'app-auth-layout',
   imports: [CommonModule, RouterModule],
   template: `
-  <main class="wrapper">
-    <router-outlet />
-  </main>
+    <main class="wrapper">
+      <router-outlet />
+    </main>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'wrapper' },
 })
-export class AuthLayout { }
+export class AuthLayout {}

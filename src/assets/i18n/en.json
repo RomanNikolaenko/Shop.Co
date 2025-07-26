@@ -31,7 +31,12 @@
     "otp": {
       "title": "Enter OTP",
       "text": "We have share a code of your registered email address robertfox@example.com",
-      "error": "OTP code is incorrect or incomplete"
+      "error": "OTP code is incorrect or incomplete",
+      "success": {
+        "title": "Password Changed Successfully",
+        "text": "Your password has been successfully changed. You can now log in with your new password.",
+        "buttonText": "Go to Login"
+      }
     },
     "errors": {
       "required": "This field is required",

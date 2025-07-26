@@ -23,7 +23,7 @@ import { Subscription } from 'rxjs';
 })
 export class Icon implements OnChanges, OnDestroy {
   @Input() name!: string;
-  
+
   private readonly http = inject(HttpClient);
   private readonly el = inject(ElementRef<HTMLElement>);
   private currentSubscription$: Subscription | null = null;
@@ -33,15 +33,17 @@ export class Icon implements OnChanges, OnDestroy {
 
     this.unCurrentSubscription();
 
-    this.currentSubscription$ = this.http.get(path, { responseType: 'text' }).subscribe({
-      next: (svg) => {
-        this.el.nativeElement.innerHTML = svg;
-      },
-      error: (err) => {
-        console.error(`Error loading icon: ${path}`, err);
-        this.el.nativeElement.innerHTML = '';
-      }
-    });
+    this.currentSubscription$ = this.http
+      .get(path, { responseType: 'text' })
+      .subscribe({
+        next: (svg) => {
+          this.el.nativeElement.innerHTML = svg;
+        },
+        error: (err) => {
+          console.error(`Error loading icon: ${path}`, err);
+          this.el.nativeElement.innerHTML = '';
+        },
+      });
   }
 
   private unCurrentSubscription() {
@@ -57,6 +59,6 @@ export class Icon implements OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unCurrentSubscription()
+    this.unCurrentSubscription();
   }
 }

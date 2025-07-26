@@ -53,11 +53,18 @@ video {
   height: auto;
 }
 
+button,
 input,
-textarea,
+optgroup,
 select,
-button {
+textarea {
   font: inherit;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+  color: inherit;
+  letter-spacing: inherit;
 }
 
 html {
