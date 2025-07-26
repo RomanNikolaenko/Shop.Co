@@ -3,11 +3,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  inject,
   Input,
   OnChanges,
+  OnDestroy,
   SimpleChanges,
-  inject,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'icon',
@@ -19,25 +21,42 @@ import {
     '[attr.ngSkipHydration]': 'true',
   },
 })
-export class Icon implements OnChanges {
+export class Icon implements OnChanges, OnDestroy {
   @Input() name!: string;
+  
+  private readonly http = inject(HttpClient);
+  private readonly el = inject(ElementRef<HTMLElement>);
+  private currentSubscription$: Subscription | null = null;
 
-  private http = inject(HttpClient);
-  private el = inject(ElementRef<HTMLElement>);
+  private loadIcon(name: string): void {
+    const path = `assets/icons/${name}.svg`;
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.name && this.name) {
-      const path = `assets/icons/${this.name}.svg`;
-      this.http.get(path, { responseType: 'text' }).subscribe(
-        (svg) => {
-          const container = this.el.nativeElement;
-          container.innerHTML = svg;
-        },
-        (error) => {
-          console.error(`Icon not found: ${path}`, error);
-          this.el.nativeElement.innerHTML = '';
-        },
-      );
+    this.unCurrentSubscription();
+
+    this.currentSubscription$ = this.http.get(path, { responseType: 'text' }).subscribe({
+      next: (svg) => {
+        this.el.nativeElement.innerHTML = svg;
+      },
+      error: (err) => {
+        console.error(`Error loading icon: ${path}`, err);
+        this.el.nativeElement.innerHTML = '';
+      }
+    });
+  }
+
+  private unCurrentSubscription() {
+    if (this.currentSubscription$) {
+      this.currentSubscription$.unsubscribe();
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['name'] && this.name) {
+      this.loadIcon(this.name);
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.unCurrentSubscription()
   }
 }

@@ -1,9 +1,4 @@
-import {
-  HttpClient,
-  HttpClientModule,
-  provideHttpClient,
-  withFetch,
-} from '@angular/common/http';
+import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 import {
   ApplicationConfig,
   importProvidersFrom,
@@ -53,7 +48,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideHttpClient(withFetch()),
     importProvidersFrom(
-      HttpClientModule,
+      HttpClient,
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,

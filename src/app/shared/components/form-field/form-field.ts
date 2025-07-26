@@ -4,7 +4,6 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
-  OnInit,
   forwardRef,
   inject,
 } from '@angular/core';
@@ -40,7 +39,7 @@ import { Icon } from '../icon/icon';
     },
   ],
 })
-export class FormField implements ControlValueAccessor, OnInit {
+export class FormField implements ControlValueAccessor {
   @Input({ required: true }) label!: string;
   @Input({ required: true }) data!: AbstractControl;
   @Input({ required: true }) name!: string;
@@ -51,17 +50,12 @@ export class FormField implements ControlValueAccessor, OnInit {
 
   protected value: string | number = '';
   protected typeInputPswrd: boolean = true;
-  protected forLabel: string = '';
 
   private readonly translate = inject(TranslateService);
   private readonly cdr = inject(ChangeDetectorRef);
 
   onChange: (value: string | number) => void = () => {};
   onTouch: () => void = () => {};
-
-  ngOnInit() {
-    this.forLabel = Math.random().toString(36).substring(7);
-  }
 
   writeValue(value: string | number): void {
     this.value = value;

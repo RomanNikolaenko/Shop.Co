@@ -81,7 +81,6 @@ export class OtpInput implements ControlValueAccessor, OnInit {
         .toArray()
         .some((inputRef) => inputRef.nativeElement === document.activeElement);
       if (!focusedInside) {
-        console.log('Blur fired — focus left all inputs');
         this.onTouched();
         this.blur.emit();
       }
