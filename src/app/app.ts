@@ -11,8 +11,8 @@ import {
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+import { LanguageService } from '^services/language.service';
 import { Loading } from '^shared/components/loading/loading';
-import { LanguageService } from '^shared/services/language.service';
 
 @Component({
   selector: 'app-root',

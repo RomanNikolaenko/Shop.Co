@@ -27,7 +27,7 @@ import {
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { routes } from '^app/app.routes';
+import { routes } from './app.routes';
 
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);

@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { STATIC_ROUTES } from '^app/core/static-routes';
+import { STATIC_ROUTES } from '^core/static-routes';
 
 @Component({
   selector: 'app-not-found',

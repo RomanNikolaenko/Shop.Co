@@ -4,12 +4,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { STATIC_ROUTES } from '^app/core/static-routes';
-import { FormField } from '^app/shared/components/form-field/form-field';
-import { Icon } from '^app/shared/components/icon/icon';
+import { STATIC_ROUTES } from '^core/static-routes';
+import { FormField } from '^shared/components/form-field/form-field';
+import { Icon } from '^shared/components/icon/icon';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-login',
   standalone: true,
   imports: [
     CommonModule,
@@ -19,20 +19,18 @@ import { Icon } from '^app/shared/components/icon/icon';
     RouterLink,
     Icon,
   ],
-  templateUrl: './register.html',
-  styleUrls: ['./register.scss', '../../user.scss'],
+  templateUrl: './login.html',
+  styleUrls: ['./login.scss', '../user.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'wrapper' },
 })
-export class Register {
+export class Login {
   private readonly formBuilder = inject(FormBuilder);
   protected STATIC_ROUTES = STATIC_ROUTES;
 
   protected loading = false;
 
   protected form = this.formBuilder.nonNullable.group({
-    firstName: ['', [Validators.required]],
-    lastName: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: [
       '',
