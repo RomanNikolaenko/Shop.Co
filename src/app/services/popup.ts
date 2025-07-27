@@ -19,24 +19,27 @@ export class Popup {
   private readonly injector = inject(Injector);
   private popups: ComponentRef<PopupHostComponent<object>>[] = [];
 
+  private baseZIndex = 1000;
+
   open<T extends object>(
     component: Type<T>,
     componentInputs?: Partial<T>,
   ): void {
-    // Створення PopupHostComponent (обгортки)
     const popupRef = createComponent(PopupHostComponent<T>, {
       environmentInjector: this.appRef.injector,
       elementInjector: this.injector,
     });
 
-    // Отримуємо DOM-елемент без any
     const hostView = popupRef.hostView as EmbeddedViewRef<
       PopupHostComponent<T>
     >;
     const domElem = hostView.rootNodes[0] as HTMLElement;
+
+    const currentZIndex = this.baseZIndex + this.popups.length;
+    domElem.style.zIndex = String(currentZIndex);
+
     document.body.appendChild(domElem);
 
-    // Встановлюємо дочірній компонент і його інпути
     popupRef.instance.childComponentType = component;
     popupRef.instance.childComponentInputs = componentInputs || {};
 

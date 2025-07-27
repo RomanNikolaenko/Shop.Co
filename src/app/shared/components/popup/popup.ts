@@ -1,3 +1,5 @@
+import { A11yModule } from '@angular/cdk/a11y';
+import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -13,75 +15,93 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
+import { popupAnim } from '^shared/animations/popup';
+
 import { Icon } from '../icon/icon';
 
 @Component({
   selector: 'popup',
   standalone: true,
-  imports: [Icon],
+  imports: [CommonModule, Icon, A11yModule],
   templateUrl: './popup.html',
   styleUrls: ['./popup.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [popupAnim],
 })
 export class Popup<T extends object = object>
-  implements AfterViewInit, OnDestroy {
+implements AfterViewInit, OnDestroy {
   @ViewChild('container', { read: ViewContainerRef, static: true })
-  container!: ViewContainerRef;
+    container!: ViewContainerRef;
 
   @Input() childComponentType!: Type<T>;
   @Input() childComponentInputs: Partial<T> = {};
   @Output() closed = new EventEmitter<void>();
 
-  private readonly cdr = inject(ChangeDetectorRef);
+  protected animationState: 'void' | 'enter' = 'void';
 
+  private readonly cdr = inject(ChangeDetectorRef);
   private touchStartX = 0;
   private touchEndX = 0;
+
+  private readonly classes = {
+    POPUP_OPEN: 'popup-open',
+    POPUP_BACKDROP: 'popup-backdrop',
+  };
+
+  private readonly selectors = {
+    POPUP: '.popup-open',
+  };
 
   ngAfterViewInit() {
     const ref = this.container.createComponent<T>(this.childComponentType);
 
-    // Передаємо всі інпути + метод `close`
     Object.assign(ref.instance, {
       ...this.childComponentInputs,
       close: () => this.close(),
     });
 
-    this.cdr.markForCheck();
-
+    document.body.classList.add(this.classes.POPUP_OPEN);
     document.addEventListener('keydown', this.handleKeyDown);
+
+    requestAnimationFrame(() => {
+      this.cdr.markForCheck();
+      this.animationState = 'enter';
+    });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
+    document.body.classList.remove(this.classes.POPUP_OPEN);
     document.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  close() {
-    this.closed.emit();
+  protected close() {
+    this.animationState = 'void';
+    setTimeout(() => this.closed.emit(), 200);
   }
 
-  // Закриття по overlay (backdrop)
-  onBackdropClick(event: MouseEvent) {
-    if ((event.target as HTMLElement).classList.contains('popup-backdrop')) {
+  protected onBackdropClick(event: MouseEvent) {
+    if (
+      (event.target as HTMLElement).classList.contains(
+        this.classes.POPUP_BACKDROP,
+      )
+    ) {
       this.close();
     }
   }
 
-  // Закриття по Escape
-  handleKeyDown = (event: KeyboardEvent) => {
+  protected handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       this.close();
     }
   };
 
-  // Свайп вліво для мобільного
-  onTouchStart(event: TouchEvent) {
+  protected onTouchStart(event: TouchEvent) {
     this.touchStartX = event.changedTouches[0].screenX;
   }
 
-  onTouchEnd(event: TouchEvent) {
+  protected onTouchEnd(event: TouchEvent) {
     this.touchEndX = event.changedTouches[0].screenX;
-    const swipeDistance = this.touchStartX - this.touchEndX;
-    if (swipeDistance > 100) {
+    if (this.touchStartX - this.touchEndX > 70) {
       this.close();
     }
   }

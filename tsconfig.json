@@ -17,6 +17,8 @@
     "paths": {
       "^core": ["./app/core"],
       "^core/*": ["./app/core/*"],
+      "^directives": ["./app/directives"],
+      "^directives/*": ["./app/directives/*"],
       "^environments": ["./app/environments"],
       "^environments/*": ["./app/environments/*"],
       "^features": ["./app/features"],

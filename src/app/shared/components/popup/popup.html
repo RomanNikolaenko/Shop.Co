@@ -1,12 +1,17 @@
 <div
   class="popup-backdrop"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="popup-title"
   (click)="onBackdropClick($event)"
   (touchstart)="onTouchStart($event)"
   (touchend)="onTouchEnd($event)"
+  [@popupAnimation]="animationState"
 >
-  <div class="popup">
+  <div class="popup" tabindex="-1" cdkTrapFocus cdkTrapFocusAutoCapture>
     <header class="popup__header">
-      <button (click)="close()" class="popup__close" aria-label="Close popup">
+      <h2 id="popup-title" class="visually-hidden">Popup</h2>
+      <button (click)="close()" class="popup__close" aria-label="Закрити попап">
         <icon name="close"></icon>
       </button>
     </header>
