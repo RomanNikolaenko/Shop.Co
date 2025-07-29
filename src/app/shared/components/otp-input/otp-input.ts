@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,7 +20,7 @@ import {
 @Component({
   selector: 'otp-input',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './otp-input.html',
   styleUrls: ['./otp-input.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

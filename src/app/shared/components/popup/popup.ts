@@ -1,5 +1,4 @@
 import { A11yModule } from '@angular/cdk/a11y';
-import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -22,7 +21,7 @@ import { Icon } from '../icon/icon';
 @Component({
   selector: 'popup',
   standalone: true,
-  imports: [CommonModule, Icon, A11yModule],
+  imports: [Icon, A11yModule],
   templateUrl: './popup.html',
   styleUrls: ['./popup.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

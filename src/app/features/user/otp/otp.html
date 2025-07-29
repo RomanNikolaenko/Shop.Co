@@ -37,14 +37,11 @@
           >
           </otp-input>
 
-          <p
-            *ngIf="
-              form.get('otp')?.invalid && (isOtpTouched || isFormSubmitted)
-            "
-            class="otp__error"
-          >
-            {{ "form.otp.error" | translate }}
-          </p>
+          @if (form.get("otp")?.invalid && (isOtpTouched || isFormSubmitted)) {
+            <p class="otp__error">
+              {{ "form.otp.error" | translate }}
+            </p>
+          }
         </div>
 
         <button

@@ -1,62 +1,28 @@
-import { isPlatformBrowser } from '@angular/common';
 import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
+  ChangeDetectionStrategy,
   inject,
-  OnDestroy,
-  OnInit,
-  PLATFORM_ID,
+  effect,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { LanguageService } from '^services/language.service';
-import { Loading } from '^shared/components/loading/loading';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Loading],
+  imports: [RouterOutlet],
   standalone: true,
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'wrapper' },
 })
-export class App implements OnInit, OnDestroy, AfterViewInit {
+export class App {
   private readonly languageService = inject(LanguageService);
-  private readonly platformId = inject(PLATFORM_ID);
-  private readonly cdr = inject(ChangeDetectorRef);
-  protected isLoading: boolean = true;
 
-  private loadHandler = () => {
-    setTimeout(() => {
-      this.isLoading = false;
-      this.cdr.markForCheck();
-    }, 500);
-  };
-
-  ngOnInit(): void {
-    this.languageService.langInit();
-  }
-
-  ngAfterViewInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      if (document.readyState === 'complete') {
-        this.isLoading = false;
-        this.cdr.markForCheck();
-      } else {
-        window.addEventListener('load', this.loadHandler);
-      }
-    } else {
-      this.isLoading = false;
-      this.cdr.markForCheck();
-    }
-  }
-
-  ngOnDestroy() {
-    if (isPlatformBrowser(this.platformId)) {
-      window.removeEventListener('load', this.loadHandler);
-    }
+  constructor() {
+    effect(() => {
+      this.languageService.langInit();
+    });
   }
 }

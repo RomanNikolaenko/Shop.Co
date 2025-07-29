@@ -1,10 +1,15 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { NgClass } from '@angular/common';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  input,
+  computed,
+} from '@angular/core';
 
 @Component({
-  selector: 'app-loading',
+  selector: 'loading',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgClass],
   templateUrl: './loading.html',
   styleUrl: './loading.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,6 +18,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   },
 })
 export class Loading {
-  @Input() show: boolean = false;
-  @Input() fullPage: boolean = false;
+  fullPage = input<boolean>(false);
+
+  containerClasses = computed(() => ({
+    loading__full: this.fullPage(),
+  }));
 }

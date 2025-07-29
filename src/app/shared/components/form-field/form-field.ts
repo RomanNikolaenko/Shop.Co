@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -21,13 +20,7 @@ import { Icon } from '../icon/icon';
 @Component({
   selector: 'form-field',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    Icon,
-  ],
+  imports: [FormsModule, ReactiveFormsModule, TranslateModule, Icon],
   templateUrl: './form-field.html',
   styleUrls: ['./form-field.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

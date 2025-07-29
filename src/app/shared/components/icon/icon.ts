@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   ElementRef,
+  effect,
   inject,
-  Input,
-  OnChanges,
-  OnDestroy,
-  SimpleChanges,
+  input,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'icon',
@@ -21,44 +21,36 @@ import { Subscription } from 'rxjs';
     '[attr.ngSkipHydration]': 'true',
   },
 })
-export class Icon implements OnChanges, OnDestroy {
-  @Input() name!: string;
+export class Icon {
+  readonly name = input<string>();
 
   private readonly http = inject(HttpClient);
   private readonly el = inject(ElementRef<HTMLElement>);
-  private currentSubscription$: Subscription | null = null;
+  private readonly destroyRef = inject(DestroyRef);
 
-  private loadIcon(name: string): void {
-    const path = `assets/icons/${name}.svg`;
+  constructor() {
+    effect(() => {
+      const iconName = this.name();
+      if (!iconName) {
+        this.el.nativeElement.innerHTML = '';
+        return;
+      }
 
-    this.unCurrentSubscription();
+      const path = `assets/icons/${iconName}.svg`;
 
-    this.currentSubscription$ = this.http
-      .get(path, { responseType: 'text' })
-      .subscribe({
-        next: (svg) => {
+      this.http
+        .get(path, { responseType: 'text' })
+        .pipe(
+          takeUntilDestroyed(this.destroyRef),
+          catchError((err) => {
+            console.error(`Error loading icon: ${path}`, err);
+            this.el.nativeElement.innerHTML = '';
+            return of('');
+          }),
+        )
+        .subscribe((svg) => {
           this.el.nativeElement.innerHTML = svg;
-        },
-        error: (err) => {
-          console.error(`Error loading icon: ${path}`, err);
-          this.el.nativeElement.innerHTML = '';
-        },
-      });
-  }
-
-  private unCurrentSubscription() {
-    if (this.currentSubscription$) {
-      this.currentSubscription$.unsubscribe();
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['name'] && this.name) {
-      this.loadIcon(this.name);
-    }
-  }
-
-  ngOnDestroy(): void {
-    this.unCurrentSubscription();
+        });
+    });
   }
 }

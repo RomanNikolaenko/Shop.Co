@@ -1,7 +1,8 @@
+import { signal } from '@angular/core';
 import { Routes } from '@angular/router';
 
 import { STATIC_ROUTES } from '^core/static-routes';
-
+export const isLoading = signal(true);
 export const routes: Routes = [
   {
     path: '',

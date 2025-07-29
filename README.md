@@ -4,3 +4,5 @@ npm install @ngx-translate/core @ngx-translate/http-loader
 
 Запустити ініціалізацію:
 npx lefthook install
+
+ng generate @angular/core:control-flow

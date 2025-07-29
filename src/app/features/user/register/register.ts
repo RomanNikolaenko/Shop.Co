@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -11,14 +10,7 @@ import { Icon } from '^shared/components/icon/icon';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormField,
-    TranslateModule,
-    RouterLink,
-    Icon,
-  ],
+  imports: [ReactiveFormsModule, FormField, TranslateModule, RouterLink, Icon],
   templateUrl: './register.html',
   styleUrls: ['./register.scss', '../user.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

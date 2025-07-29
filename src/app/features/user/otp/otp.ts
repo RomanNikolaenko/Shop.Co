@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -14,14 +13,7 @@ import { Success } from './success/success';
 @Component({
   selector: 'app-otp',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    RouterLink,
-    Icon,
-    OtpInput,
-  ],
+  imports: [ReactiveFormsModule, TranslateModule, RouterLink, Icon, OtpInput],
   templateUrl: './otp.html',
   styleUrls: ['./otp.scss', '../user.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

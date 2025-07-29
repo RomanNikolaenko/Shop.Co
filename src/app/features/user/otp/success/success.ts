@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,7 +8,7 @@ import { Icon } from '^shared/components/icon/icon';
 @Component({
   selector: 'success',
   standalone: true,
-  imports: [CommonModule, TranslateModule, RouterLink, Icon],
+  imports: [TranslateModule, RouterLink, Icon],
   templateUrl: './success.html',
   styleUrls: ['./success.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

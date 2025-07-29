@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Injectable, PLATFORM_ID, inject } from '@angular/core';
+import { DestroyRef, Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -17,6 +17,7 @@ export class LanguageService {
   private readonly translateService = inject(TranslateService);
   private readonly document = inject(DOCUMENT);
   private readonly platformId: object = inject(PLATFORM_ID);
+  private readonly destroyRef = inject(DestroyRef);
   static readonly langKey = environment.LANGUAGE_KEY;
 
   public langs: LangsModel[] = [];
@@ -72,7 +73,7 @@ export class LanguageService {
   public getTranslations() {
     this.translateService
       .stream(['language.english', 'language.ukrainian'])
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((translations) => {
         this.langs = [
           { value: 'en', viewValue: translations['language.english'] },
