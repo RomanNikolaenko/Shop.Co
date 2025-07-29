@@ -6,13 +6,13 @@
   (click)="onBackdropClick($event)"
   (touchstart)="onTouchStart($event)"
   (touchend)="onTouchEnd($event)"
-  [@popupAnimation]="animationState"
+  [@popupAnimation]="animationState()"
 >
   <div class="popup" tabindex="-1" cdkTrapFocus cdkTrapFocusAutoCapture>
     <header class="popup__header">
       <h2 id="popup-title" class="visually-hidden">Popup</h2>
       <button (click)="close()" class="popup__close" aria-label="Закрити попап">
-        <icon name="close"></icon>
+        <icon [name]="'close'"></icon>
       </button>
     </header>
     <ng-template #container></ng-template>

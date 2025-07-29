@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -10,7 +11,14 @@ import { Icon } from '^shared/components/icon/icon';
 @Component({
   selector: 'app-forgot',
   standalone: true,
-  imports: [ReactiveFormsModule, FormField, TranslateModule, RouterLink, Icon],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormField,
+    TranslateModule,
+    RouterLink,
+    Icon,
+  ],
   templateUrl: './forgot.html',
   styleUrls: ['./forgot.scss', '../user.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,6 +29,13 @@ export class Forgot {
   protected STATIC_ROUTES = STATIC_ROUTES;
 
   protected loading = false;
+
+  get containerClasses() {
+    return {
+      btn__disabled: this.form.invalid || this.loading,
+      btn__load: this.loading,
+    };
+  }
 
   protected form = this.formBuilder.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],

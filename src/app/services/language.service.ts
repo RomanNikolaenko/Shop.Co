@@ -1,14 +1,17 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { DestroyRef, Injectable, PLATFORM_ID, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
+  Injectable,
+  Injector,
+  PLATFORM_ID,
+  inject,
+  signal,
+  WritableSignal,
+  effect,
+} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '^environments/environment';
-
-interface LangsModel {
-  value: string;
-  viewValue: string;
-}
+import { LangsModel } from '^interfaces/langs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,35 +20,50 @@ export class LanguageService {
   private readonly translateService = inject(TranslateService);
   private readonly document = inject(DOCUMENT);
   private readonly platformId: object = inject(PLATFORM_ID);
-  private readonly destroyRef = inject(DestroyRef);
+  private readonly injector = inject(Injector);
   static readonly langKey = environment.LANGUAGE_KEY;
 
-  public langs: LangsModel[] = [];
+  readonly langs: WritableSignal<LangsModel[]> = signal([]);
+  readonly currentLang: WritableSignal<string> = signal(this.getLang());
 
   constructor() {
-    this.getTranslations();
-    this.langInit();
-  }
+    this.translateService
+      .stream(['language.english', 'language.ukrainian'])
+      .subscribe((translations) => {
+        this.langs.set([
+          { value: 'en', viewValue: translations['language.english'] },
+          { value: 'uk', viewValue: translations['language.ukrainian'] },
+        ]);
+      });
 
-  public langInit(): void {
-    const lang = this.getLang();
+    effect(
+      () => {
+        const lang = this.currentLang();
+        this.translateService.setDefaultLang('en');
+        this.translateService.use(lang);
 
-    this.translateService.setDefaultLang('en');
-    this.translateService.use(lang);
-    if (isPlatformBrowser(this.platformId)) {
-      this.document.documentElement.lang = lang;
-    }
+        if (isPlatformBrowser(this.platformId)) {
+          this.document.documentElement.lang = lang;
+        }
+      },
+      { injector: this.injector },
+    );
   }
 
   public setLang(value: string): void {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem(LanguageService.langKey, value);
     }
+    this.currentLang.set(value);
+  }
+
+  public langInit(): void {
+    this.currentLang.set(this.getLang());
   }
 
   public getLang(): string {
     if (isPlatformBrowser(this.platformId)) {
-      const language = this.langs.map(({ value }) => value);
+      const language = this.langs().map(({ value }) => value);
       const langFromNavigator = navigator.language.split('-')[0];
       const includeLang = language.includes(langFromNavigator);
       const storedLang = localStorage.getItem(LanguageService.langKey);
@@ -68,17 +86,6 @@ export class LanguageService {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem(LanguageService.langKey);
     }
-  }
-
-  public getTranslations() {
-    this.translateService
-      .stream(['language.english', 'language.ukrainian'])
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((translations) => {
-        this.langs = [
-          { value: 'en', viewValue: translations['language.english'] },
-          { value: 'uk', viewValue: translations['language.ukrainian'] },
-        ];
-      });
+    this.currentLang.set('en');
   }
 }

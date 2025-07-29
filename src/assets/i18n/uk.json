@@ -5,6 +5,10 @@
   "notFound": {
     "title": "Сторінку, яку ви шукаєте, неможливо знайти!"
   },
+  "language": {
+    "english": "EN",
+    "ukrainian": "UA"
+  },
   "form": {
     "passwordAriaLabel": "Перемкнути видимість пароля",
     "forgotPassword": "Забули пароль?",

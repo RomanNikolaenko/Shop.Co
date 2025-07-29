@@ -11,9 +11,9 @@
       </a>
 
       <form
-        class="otp__form user__form"
         [formGroup]="form"
         (ngSubmit)="onSubmit()"
+        class="otp__form user__form"
       >
         <div class="otp__text user__text">
           <h1 class="otp__title user__title">
@@ -46,7 +46,7 @@
 
         <button
           [disabled]="form.invalid"
-          [class.btn__disabled]="form.invalid"
+          [ngClass]="containerClasses"
           class="user__submit btn btn__black"
           type="submit"
         >

@@ -1,26 +1,29 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  EventEmitter,
-  forwardRef,
-  Input,
-  Output,
-  QueryList,
   ViewChildren,
-  OnInit,
+  QueryList,
+  forwardRef,
+  signal,
+  computed,
+  input,
+  output,
+  effect,
+  WritableSignal,
 } from '@angular/core';
 import {
-  FormsModule,
-  ReactiveFormsModule,
   NG_VALUE_ACCESSOR,
   ControlValueAccessor,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 @Component({
   selector: 'otp-input',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './otp-input.html',
   styleUrls: ['./otp-input.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,44 +35,56 @@ import {
     },
   ],
 })
-export class OtpInput implements ControlValueAccessor, OnInit {
-  @Input() length = 6;
-  @Input() showError = false;
-  @Output() blur = new EventEmitter<void>();
-
+export class OtpInput implements ControlValueAccessor {
   @ViewChildren('otpInput') inputs!: QueryList<ElementRef<HTMLInputElement>>;
 
-  protected otp: string[] = [];
+  readonly length = input(6);
+  readonly showError = input(false);
+  readonly blur = output<void>();
+
+  protected readonly otp: WritableSignal<string[]> = signal([]);
 
   private onChange: (value: string) => void = () => {};
   private onTouched: () => void = () => {};
 
-  ngOnInit() {
-    this.otp = Array(this.length).fill('');
+  get containerClasses() {
+    return {
+      'otp-input--error': this.showError(),
+    };
   }
 
-  get otpArray() {
-    return Array(this.length);
+  constructor() {
+    effect(() => {
+      const len = this.length();
+      this.otp.set(Array(len).fill(''));
+    });
   }
+
+  readonly otpArray = computed(() => Array(this.length()));
 
   onInput(event: Event, index: number) {
     const input = event.target as HTMLInputElement;
     const val = input.value;
+    const otpValue = [...this.otp()];
 
     if (/^\d$/.test(val)) {
-      this.otp[index] = val;
-      if (index < this.length - 1) {
+      otpValue[index] = val;
+      this.otp.set(otpValue);
+
+      if (index < this.length() - 1) {
         this.inputs.toArray()[index + 1].nativeElement.focus();
       }
     } else {
-      this.otp[index] = '';
+      otpValue[index] = '';
       input.value = '';
+      this.otp.set(otpValue);
     }
+
     this.emit();
   }
 
   onKeyDown(event: KeyboardEvent, index: number) {
-    if (event.key === 'Backspace' && !this.otp[index] && index > 0) {
+    if (event.key === 'Backspace' && !this.otp()[index] && index > 0) {
       this.inputs.toArray()[index - 1].nativeElement.focus();
     }
   }
@@ -93,30 +108,33 @@ export class OtpInput implements ControlValueAccessor, OnInit {
     const digits = pastedText
       .replace(/\D/g, '')
       .split('')
-      .slice(0, this.length);
+      .slice(0, this.length());
 
     if (digits.length === 0) return;
 
-    this.otp = Array(this.length).fill('');
+    const otpValue = Array(this.length()).fill('');
     digits.forEach((digit, i) => {
-      this.otp[i] = digit;
+      otpValue[i] = digit;
     });
 
+    this.otp.set(otpValue);
+
     this.inputs.forEach((ref, i) => {
-      ref.nativeElement.value = this.otp[i] || '';
+      ref.nativeElement.value = otpValue[i] || '';
     });
 
     this.emit();
 
-    const firstEmpty = this.otp.findIndex((d) => d === '');
-    const focusIndex = firstEmpty === -1 ? this.length - 1 : firstEmpty;
+    const firstEmpty = otpValue.findIndex((d) => d === '');
+    const focusIndex = firstEmpty === -1 ? this.length() - 1 : firstEmpty;
     this.inputs.toArray()[focusIndex]?.nativeElement.focus();
   }
 
   writeValue(value: string): void {
-    this.otp = Array(this.length)
+    const filled = Array(this.length())
       .fill('')
       .map((_, i) => value?.[i] ?? '');
+    this.otp.set(filled);
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -132,6 +150,6 @@ export class OtpInput implements ControlValueAccessor, OnInit {
   }
 
   private emit() {
-    this.onChange(this.otp.join(''));
+    this.onChange(this.otp().join(''));
   }
 }

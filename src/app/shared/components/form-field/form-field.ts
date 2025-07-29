@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -20,7 +21,13 @@ import { Icon } from '../icon/icon';
 @Component({
   selector: 'form-field',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, TranslateModule, Icon],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    Icon,
+  ],
   templateUrl: './form-field.html',
   styleUrls: ['./form-field.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,6 +53,15 @@ export class FormField implements ControlValueAccessor {
 
   private readonly translate = inject(TranslateService);
   private readonly cdr = inject(ChangeDetectorRef);
+
+  get containerClasses() {
+    return {
+      'label-field__active': !!this.value,
+      'label-field__success': this.data.valid && this.validation,
+      'label-field__error': this.errorKeys.length,
+      'label-field__padding': this.type === 'password',
+    };
+  }
 
   onChange: (value: string | number) => void = () => {};
   onTouch: () => void = () => {};

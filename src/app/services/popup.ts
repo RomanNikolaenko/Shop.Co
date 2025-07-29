@@ -6,7 +6,9 @@ import {
   Injector,
   Type,
   createComponent,
+  signal,
   inject,
+  computed,
 } from '@angular/core';
 
 import { Popup as PopupHostComponent } from '^shared/components/popup/popup';
@@ -17,10 +19,15 @@ import { Popup as PopupHostComponent } from '^shared/components/popup/popup';
 export class Popup {
   private readonly appRef = inject(ApplicationRef);
   private readonly injector = inject(Injector);
-  private popups: ComponentRef<PopupHostComponent<object>>[] = [];
 
-  private baseZIndex = 1000;
+  // ✅ signal: список відкритих попапів
+  private readonly popups = signal<ComponentRef<PopupHostComponent<object>>[]>(
+    [],
+  );
 
+  private readonly baseZIndex = 1000;
+
+  /** Відкрити попап з переданим компонентом */
   open<T extends object>(
     component: Type<T>,
     componentInputs?: Partial<T>,
@@ -35,25 +42,35 @@ export class Popup {
     >;
     const domElem = hostView.rootNodes[0] as HTMLElement;
 
-    const currentZIndex = this.baseZIndex + this.popups.length;
+    // Z-index
+    const currentZIndex = this.baseZIndex + this.popups().length;
     domElem.style.zIndex = String(currentZIndex);
-
     document.body.appendChild(domElem);
 
-    popupRef.instance.childComponentType = component;
-    popupRef.instance.childComponentInputs = componentInputs || {};
+    // Передача @Input значень без set()
+    popupRef.setInput('childComponentType', component);
+    popupRef.setInput('childComponentInputs', componentInputs || {});
 
-    popupRef.instance.closed.subscribe(() =>
-      this.close(popupRef as ComponentRef<PopupHostComponent<object>>),
-    );
+    popupRef.instance.closed.subscribe(() => {
+      this.close(
+        popupRef as unknown as ComponentRef<PopupHostComponent<object>>,
+      );
+    });
 
     this.appRef.attachView(popupRef.hostView);
-    this.popups.push(popupRef as ComponentRef<PopupHostComponent<object>>);
+    this.popups.update((list) => [
+      ...list,
+      popupRef as unknown as ComponentRef<PopupHostComponent<object>>,
+    ]);
   }
 
+  /** Закрити попап */
   close(popupRef: ComponentRef<PopupHostComponent<object>>) {
     this.appRef.detachView(popupRef.hostView);
     popupRef.destroy();
-    this.popups = this.popups.filter((p) => p !== popupRef);
+    this.popups.update((list) => list.filter((p) => p !== popupRef));
   }
+
+  /** (Опціонально) Отримати кількість активних попапів як computed */
+  readonly popupCount = computed(() => this.popups().length);
 }

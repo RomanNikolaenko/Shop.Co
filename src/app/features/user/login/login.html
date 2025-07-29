@@ -50,8 +50,7 @@
 
         <button
           [disabled]="form.invalid || loading"
-          [class.btn__disabled]="form.invalid || loading"
-          [class.btn__load]="loading"
+          [ngClass]="containerClasses"
           class="user__submit btn btn__black"
           type="submit"
         >

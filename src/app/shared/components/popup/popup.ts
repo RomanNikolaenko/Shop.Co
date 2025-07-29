@@ -1,17 +1,14 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  EventEmitter,
-  inject,
-  Input,
-  OnDestroy,
-  Output,
   Type,
   ViewChild,
   ViewContainerRef,
+  input,
+  signal,
+  effect,
+  EventEmitter,
 } from '@angular/core';
 
 import { popupAnim } from '^shared/animations/popup';
@@ -27,18 +24,16 @@ import { Icon } from '../icon/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [popupAnim],
 })
-export class Popup<T extends object = object>
-implements AfterViewInit, OnDestroy {
+export class Popup<T extends object = object> {
   @ViewChild('container', { read: ViewContainerRef, static: true })
-    container!: ViewContainerRef;
+  protected container!: ViewContainerRef;
 
-  @Input() childComponentType!: Type<T>;
-  @Input() childComponentInputs: Partial<T> = {};
-  @Output() closed = new EventEmitter<void>();
+  readonly childComponentType = input<Type<T>>();
+  readonly childComponentInputs = input<Partial<T>>({});
 
-  protected animationState: 'void' | 'enter' = 'void';
+  readonly animationState = signal<'void' | 'enter'>('void');
+  readonly closed = new EventEmitter<void>();
 
-  private readonly cdr = inject(ChangeDetectorRef);
   private touchStartX = 0;
   private touchEndX = 0;
 
@@ -47,24 +42,24 @@ implements AfterViewInit, OnDestroy {
     POPUP_BACKDROP: 'popup-backdrop',
   };
 
-  private readonly selectors = {
-    POPUP: '.popup-open',
-  };
+  constructor() {
+    effect(() => {
+      const componentType = this.childComponentType();
+      if (!componentType || !this.container) return;
 
-  ngAfterViewInit() {
-    const ref = this.container.createComponent<T>(this.childComponentType);
+      const ref = this.container.createComponent<T>(componentType);
 
-    Object.assign(ref.instance, {
-      ...this.childComponentInputs,
-      close: () => this.close(),
-    });
+      Object.assign(ref.instance, {
+        ...this.childComponentInputs(),
+        close: () => this.close(),
+      });
 
-    document.body.classList.add(this.classes.POPUP_OPEN);
-    document.addEventListener('keydown', this.handleKeyDown);
+      document.body.classList.add(this.classes.POPUP_OPEN);
+      document.addEventListener('keydown', this.handleKeyDown);
 
-    requestAnimationFrame(() => {
-      this.cdr.markForCheck();
-      this.animationState = 'enter';
+      requestAnimationFrame(() => {
+        this.animationState.set('enter');
+      });
     });
   }
 
@@ -74,7 +69,7 @@ implements AfterViewInit, OnDestroy {
   }
 
   protected close() {
-    this.animationState = 'void';
+    this.animationState.set('void');
     setTimeout(() => this.closed.emit(), 200);
   }
 

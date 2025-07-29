@@ -5,6 +5,10 @@
   "notFound": {
     "title": "The page you’re looking for can’t be found!"
   },
+  "language": {
+    "english": "EN",
+    "ukrainian": "UA"
+  },
   "form": {
     "passwordAriaLabel": "Toggle password visibility",
     "forgotPassword": "Forgot password?",

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -13,7 +14,14 @@ import { Success } from './success/success';
 @Component({
   selector: 'app-otp',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslateModule, RouterLink, Icon, OtpInput],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    RouterLink,
+    Icon,
+    OtpInput,
+  ],
   templateUrl: './otp.html',
   styleUrls: ['./otp.scss', '../user.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,6 +36,13 @@ export class Otp {
   protected otpPattern = /^\d{6}$/;
   protected isOtpTouched = false;
   protected isFormSubmitted = false;
+
+  get containerClasses() {
+    return {
+      btn__disabled: this.form.invalid || this.loading,
+      btn__load: this.loading,
+    };
+  }
 
   protected form = this.formBuilder.group({
     otp: ['', [Validators.required, Validators.pattern(this.otpPattern)]],
