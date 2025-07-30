@@ -1,0 +1,24 @@
+@use "styles/functions" as *;
+@use "styles/mixins" as *;
+@use "styles/media" as *;
+
+.nav {
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: rem(24);
+  }
+
+  &__link {
+    user-select: none;
+
+    &--active {
+      span {
+        background-image: linear-gradient(to right, currentcolor, currentcolor);
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        background-size: 100% 2px;
+      }
+    }
+  }
+}

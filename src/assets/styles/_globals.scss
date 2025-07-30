@@ -14,7 +14,7 @@ body {
   background-color: var(--color-light);
   overflow-x: hidden;
 
-  &.popup-open {
+  &.lock {
     overflow: hidden;
     touch-action: none;
   }
@@ -29,11 +29,6 @@ svg * {
   transition-duration: var(--transition-duration);
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 h1,
 h2,
 h3,
@@ -43,17 +38,17 @@ h4 {
 
 h1,
 .h1 {
-  @include fluid("font-size", 60, 42);
+  @include fluid("font-size", 52, 38);
 }
 
 h2,
 .h2 {
-  @include fluid("font-size", 48, 36);
+  @include fluid("font-size", 42, 32);
 }
 
 h3,
 .h3 {
-  @include fluid("font-size", 30, 26);
+  @include fluid("font-size", 28, 24);
 }
 
 h4,
@@ -69,8 +64,4 @@ h4,
   &:not(main) {
     justify-content: center;
   }
-}
-
-.text-decoration {
-  @include textDecoration;
 }

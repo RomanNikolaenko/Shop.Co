@@ -1,0 +1,36 @@
+<div class="actions">
+  <button
+    (click)="toggleSearch()"
+    [attr.aria-expanded]="showFormSearch()"
+    aria-controls="search-section"
+    class="actions__search search__btn"
+    type="button"
+  >
+    <span class="visually-hidden">{{ "search.open" | translate }}</span>
+    <icon name="search" class="actions__icon"></icon>
+  </button>
+
+  @if (isCurrentRoute(STATIC_ROUTES.SHOP.CH.CART.RouterLink)) {
+    <span class="actions__link actions__link--active">
+      <icon name="cart" class="actions__icon"></icon>
+      <span class="visually-hidden">Cart</span>
+    </span>
+  } @else {
+    <a
+      [routerLink]="[STATIC_ROUTES.SHOP.CH.CART.RouterLink]"
+      class="actions__link"
+    >
+      <icon name="cart" class="actions__icon"></icon>
+      <span class="visually-hidden">Cart</span>
+    </a>
+  }
+
+  <a
+    [routerLink]="[STATIC_ROUTES.USER.CH.LOGIN.RouterLink]"
+    routerLinkActive="actions__link--active"
+    class="actions__link"
+  >
+    <icon name="login" class="actions__icon"></icon>
+    <span class="visually-hidden">Authorization</span>
+  </a>
+</div>

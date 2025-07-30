@@ -1,0 +1,51 @@
+@if (showFormSearch()) {
+  <section
+    [@popupAnimation]="screenWidth() < 768 ? 'in' : null"
+    (click)="onBackgroundClick($event)"
+    class="search"
+    role="search"
+  >
+    <div class="search__inner">
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        [focusWithin]="['.search__submit']"
+        class="search__form"
+      >
+        <button class="search__btn search__submit" type="submit">
+          <span class="visually-hidden">{{
+            "search.perform" | translate
+          }}</span>
+          <icon name="search" class="search__btn-icon"></icon>
+        </button>
+        <label for="search-input" class="visually-hidden">{{
+          "search.label" | translate
+        }}</label>
+        <input
+          id="search-input"
+          class="search__input"
+          formControlName="query"
+          type="text"
+          name="query"
+          autocomplete="off"
+          [attr.aria-label]="'search.input' | translate"
+          [placeholder]="'search.input' | translate"
+        />
+      </form>
+
+      @if (querySignal()) {
+        <div
+          [@flyInBottom]="screenWidth() >= 768 ? 'in' : null"
+          class="search__results"
+        >
+          <h3 class="search__results-title">
+            {{ "search.results" | translate }}
+          </h3>
+          <div class="search__results-wrap">
+            <span>{{ lowerCaseQuery() }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+}

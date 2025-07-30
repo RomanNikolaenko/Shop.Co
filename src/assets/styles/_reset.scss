@@ -37,7 +37,7 @@ body,
 }
 
 p {
-  --paragraphMarginBottom: rem(24);
+  --paragraphMarginBottom: rem(16);
 
   margin-block: 0;
 }
@@ -70,9 +70,6 @@ textarea {
 html {
   height: 100%;
   scrollbar-gutter: stable;
-}
-
-html {
   scroll-behavior: smooth;
 }
 
@@ -81,8 +78,15 @@ body {
   line-height: 1.5;
 }
 
-a:where([class]) {
-  display: inline-flex;
+a {
+  text-decoration: none;
+  color: inherit;
+  user-select: none;
+
+  &:where([class]) {
+    display: inline-flex;
+    outline: none;
+  }
 }
 
 button,

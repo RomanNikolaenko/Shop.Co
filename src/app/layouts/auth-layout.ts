@@ -12,15 +12,17 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { loadingAnim } from '^shared/animations/loading';
 import { Loading } from '^shared/components/loading/loading';
 
 @Component({
   standalone: true,
   selector: 'app-auth-layout',
   imports: [RouterModule, Loading],
+  animations: [loadingAnim],
   template: `
     @if (isLoading()) {
-      <loading [fullPage]="true"></loading>
+      <loading @loadingAnimation [fullPage]="true"></loading>
     } @else {
       <main class="wrapper">
         <router-outlet />
@@ -46,7 +48,7 @@ export class AuthLayout {
         setTimeout(() => {
           this.isLoading.set(false);
           this.cdr.markForCheck();
-        }, 300);
+        }, 150);
       }
     });
   }

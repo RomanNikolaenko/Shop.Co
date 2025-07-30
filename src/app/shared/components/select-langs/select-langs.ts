@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   signal,
@@ -8,7 +7,7 @@ import {
 } from '@angular/core';
 
 import { LanguageService } from '^services/language.service';
-import { DropdownAnim } from '^shared/animations/dropdown';
+import { dropdownAnim } from '^shared/animations/dropdown';
 
 import { Icon } from '../icon/icon';
 
@@ -17,9 +16,9 @@ import { Icon } from '../icon/icon';
   templateUrl: './select-langs.html',
   styleUrls: ['./select-langs.scss'],
   standalone: true,
-  imports: [CommonModule, Icon],
+  imports: [Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [DropdownAnim],
+  animations: [dropdownAnim],
 })
 export class SelectLangs {
   protected readonly languageService = inject(LanguageService);

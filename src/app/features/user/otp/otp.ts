@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { STATIC_ROUTES } from '^core/static-routes';
-import { Popup } from '^services/popup';
+import { PopupService } from '^services/popup';
 import { Icon } from '^shared/components/icon/icon';
 import { OtpInput } from '^shared/components/otp-input/otp-input';
 
@@ -29,7 +29,7 @@ import { Success } from './success/success';
 })
 export class Otp {
   private readonly formBuilder = inject(FormBuilder);
-  private readonly popup = inject(Popup);
+  private readonly popup = inject(PopupService);
   protected STATIC_ROUTES = STATIC_ROUTES;
 
   protected loading = false;
@@ -39,8 +39,7 @@ export class Otp {
 
   get containerClasses() {
     return {
-      btn__disabled: this.form.invalid || this.loading,
-      btn__load: this.loading,
+      btn__disabled: this.form.invalid,
     };
   }
 

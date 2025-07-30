@@ -9,6 +9,17 @@
     "english": "EN",
     "ukrainian": "UA"
   },
+  "burger": {
+    "open": "Відкрити меню",
+    "close": "Закрити меню"
+  },
+  "search": {
+    "open": "Відкрити пошук",
+    "label": "Пошук по сайту",
+    "input": "Введіть пошуковий запит",
+    "perform": "Виконати пошук",
+    "results": "Результати пошуку"
+  },
   "form": {
     "passwordAriaLabel": "Перемкнути видимість пароля",
     "forgotPassword": "Забули пароль?",

@@ -43,7 +43,7 @@
     background-size var(--transition-duration) var(--transition-timing-function),
     color var(--transition-duration) var(--transition-timing-function);
 
-  & > span {
+  span {
     background-image: linear-gradient(to right, currentColor, currentColor);
     background-size: 0 2px;
     background-position: right bottom;
@@ -57,7 +57,7 @@
       color 0.1s var(--transition-timing-function);
     outline: none;
 
-    & > span {
+    span {
       color: currentColor;
       background-position: left bottom;
       background-size: 100% 2px;

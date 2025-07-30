@@ -28,6 +28,11 @@ export const routes: Routes = [
       import('^features/user/user.routes').then((m) => m.userRoutes),
   },
   {
+    path: 'shop',
+    loadChildren: () =>
+      import('^features/shop/shop.routes').then((m) => m.shopRoutes),
+  },
+  {
     path: '**',
     title: `${STATIC_ROUTES.NOT_FOUND.Title}`,
     loadComponent: () =>

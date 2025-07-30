@@ -11,6 +11,12 @@ export const STATIC_ROUTES = {
     Title: 'SHOP.CO | About Us',
   },
 
+  CONTACTS: {
+    Path: 'contacts',
+    RouterLink: '/contacts',
+    Title: 'SHOP.CO | Contacts',
+  },
+
   USER: {
     Path: 'user',
     RouterLink: '/user',
@@ -34,6 +40,24 @@ export const STATIC_ROUTES = {
         Path: 'otp',
         RouterLink: '/user/otp',
         Title: 'SHOP.CO | Otp',
+      },
+    },
+  },
+
+  SHOP: {
+    Path: 'shop',
+    RouterLink: '/shop',
+    Title: 'SHOP.CO | shop',
+    CH: {
+      CART: {
+        Path: 'cart',
+        RouterLink: '/shop/cart',
+        Title: 'SHOP.CO | Cart',
+      },
+      CHECKOUT: {
+        Path: 'checkout',
+        RouterLink: '/shop/checkout',
+        Title: 'SHOP.CO | Checkout',
       },
     },
   },

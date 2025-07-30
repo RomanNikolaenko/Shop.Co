@@ -63,6 +63,13 @@ export class FormField implements ControlValueAccessor {
     };
   }
 
+  get errorKeys(): string[] {
+    if (!this.data?.errors || !this.data.touched) {
+      return [];
+    }
+    return Object.keys(this.data.errors);
+  }
+
   onChange: (value: string | number) => void = () => {};
   onTouch: () => void = () => {};
 
@@ -81,13 +88,6 @@ export class FormField implements ControlValueAccessor {
   typeInputPassword(): void {
     this.typeInputPswrd = !this.typeInputPswrd;
     this.cdr.markForCheck();
-  }
-
-  get errorKeys(): string[] {
-    if (!this.data?.errors || !this.data.touched) {
-      return [];
-    }
-    return Object.keys(this.data.errors);
   }
 
   getErrorMessage(key: string): string {

@@ -9,3 +9,7 @@
 .visually-hidden {
   @include visually-hidden;
 }
+
+.text-decoration {
+  @include textDecoration;
+}

@@ -38,7 +38,7 @@ export class Popup<T extends object = object> {
   private touchEndX = 0;
 
   private readonly classes = {
-    POPUP_OPEN: 'popup-open',
+    POPUP_OPEN: 'lock',
     POPUP_BACKDROP: 'popup-backdrop',
   };
 

@@ -1,0 +1,63 @@
+@use "styles/functions" as *;
+@use "styles/mixins" as *;
+
+.burger {
+  display: inline-flex;
+  padding: 0;
+  outline: none;
+
+  @include interactive {
+    color: var(--color-gray-alt);
+  }
+
+  &__icon {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: rem(6);
+    width: rem(24);
+    height: rem(24);
+    color: inherit;
+  }
+
+  &__line {
+    display: block;
+    width: 100%;
+    height: rem(2);
+    background-color: currentcolor;
+    transform-origin: center;
+    transition: all 0.3s ease;
+
+    &.top,
+    &.bottom {
+      position: absolute;
+      left: 0;
+    }
+
+    &.top {
+      top: rem(4);
+    }
+
+    &.bottom {
+      bottom: rem(4);
+    }
+  }
+
+  &.active {
+    .top {
+      top: calc(50% - rem(1));
+      transform: rotate(45deg);
+    }
+
+    .middle {
+      opacity: 0;
+    }
+
+    .bottom {
+      bottom: calc(50% - rem(1));
+      transform: rotate(-45deg);
+    }
+  }
+}

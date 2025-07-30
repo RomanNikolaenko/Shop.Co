@@ -9,6 +9,17 @@
     "english": "EN",
     "ukrainian": "UA"
   },
+  "burger": {
+    "open": "Open menu",
+    "close": "Close menu"
+  },
+  "search": {
+    "open": "Open search",
+    "label": "Site search",
+    "input": "Enter search query",
+    "perform": "Perform search",
+    "results": "Search results"
+  },
   "form": {
     "passwordAriaLabel": "Toggle password visibility",
     "forgotPassword": "Forgot password?",

@@ -9,6 +9,6 @@ import {
 export const popupAnim = trigger('popupAnimation', [
   state('void', style({ opacity: 0 })),
   state('enter', style({ opacity: 1 })),
-  transition('void => enter', animate('250ms ease-out')),
-  transition('enter => void', animate('200ms ease-in')),
+  transition('void => *', animate('250ms ease-out')),
+  transition('* => void', animate('200ms ease-in')),
 ]);

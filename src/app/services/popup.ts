@@ -16,7 +16,7 @@ import { Popup as PopupHostComponent } from '^shared/components/popup/popup';
 @Injectable({
   providedIn: 'root',
 })
-export class Popup {
+export class PopupService {
   private readonly appRef = inject(ApplicationRef);
   private readonly injector = inject(Injector);
 

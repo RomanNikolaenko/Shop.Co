@@ -1,0 +1,63 @@
+@use "styles/functions" as *;
+@use "styles/mixins" as *;
+@use "styles/media" as *;
+
+:host {
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: var(--color-light);
+}
+
+.header {
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 rem(2) rem(4) var(--color-gray-alt);
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: rem(12);
+
+    @include fluid("gap", 40, 20);
+
+    @include tablet-above {
+      padding-block: rem(18);
+    }
+  }
+
+  &__burger {
+    display: inline-flex;
+
+    @include tablet-above {
+      display: none;
+    }
+  }
+
+  &__menu {
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__search {
+    position: relative;
+    z-index: 20;
+    width: 100%;
+
+    @include mobile {
+      position: fixed;
+      inset: rem(56) 0 0;
+    }
+
+    @include mobile-s {
+      top: rem(48);
+    }
+  }
+
+  &__actions {
+    margin-left: auto;
+  }
+}

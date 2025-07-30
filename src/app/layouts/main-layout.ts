@@ -12,21 +12,26 @@ import {
   RouterModule,
 } from '@angular/router';
 
+import { loadingAnim } from '^shared/animations/loading';
 import { Loading } from '^shared/components/loading/loading';
+
+import { Footer } from './components/footer/footer';
+import { Header } from './components/header/header';
 
 @Component({
   standalone: true,
   selector: 'app-main-layout',
-  imports: [RouterModule, Loading],
+  imports: [RouterModule, Loading, Header, Footer],
+  animations: [loadingAnim],
   template: `
     @if (isLoading()) {
-      <loading [fullPage]="true"></loading>
+      <loading @loadingAnimation [fullPage]="true"></loading>
     } @else {
-      <header><h1>Main Layout Header</h1></header>
+      <app-header></app-header>
       <main class="wrapper">
         <router-outlet />
       </main>
-      <footer><p>Footer</p></footer>
+      <app-footer></app-footer>
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,8 +50,10 @@ export class MainLayout {
       }
 
       if (event instanceof NavigationEnd) {
-        this.isLoading.set(false);
-        this.cdr.markForCheck();
+        setTimeout(() => {
+          this.isLoading.set(false);
+          this.cdr.markForCheck();
+        }, 150);
       }
     });
   }
