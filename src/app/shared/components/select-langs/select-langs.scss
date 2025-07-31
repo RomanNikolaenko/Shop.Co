@@ -4,7 +4,7 @@
 .select {
   position: relative;
   display: inline-block;
-  width: rem(80);
+  inline-size: rem(80);
   border: rem(1) solid var(--color-dark);
   outline: none;
   font-family: inherit;
@@ -19,14 +19,15 @@
     justify-content: space-between;
     align-items: center;
     gap: rem(8);
-    padding: rem(8) rem(12);
+    padding-block: rem(8);
+    padding-inline: rem(12);
     cursor: pointer;
   }
 
   &__arrow {
     flex: 0 0 auto;
-    width: rem(16);
-    height: rem(16);
+    block-size: rem(16);
+    inline-size: rem(16);
     transition: transform var(--transition-duration)
       var(--transition-timing-function);
 
@@ -40,8 +41,8 @@
     z-index: 10;
     top: 100%;
     left: 0;
-    width: 100%;
-    max-height: rem(200);
+    inline-size: 100%;
+    max-block-size: rem(200);
     box-shadow: 0 rem(4) rem(6) var(--color-dark);
     padding: 0;
     border: 1px solid var(--color-dark);
@@ -51,7 +52,8 @@
   }
 
   &__option {
-    padding: rem(8) rem(12);
+    padding-block: rem(8);
+    padding-inline: rem(12);
     cursor: pointer;
     transition:
       background-color var(--transition-duration)

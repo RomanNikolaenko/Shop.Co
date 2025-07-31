@@ -17,18 +17,18 @@
     justify-content: center;
     align-items: center;
     gap: rem(6);
-    width: rem(24);
-    height: rem(24);
+    block-size: rem(24);
+    inline-size: rem(24);
     color: inherit;
   }
 
   &__line {
     display: block;
-    width: 100%;
-    height: rem(2);
+    block-size: rem(2);
+    inline-size: rem(24);
     background-color: currentcolor;
-    transform-origin: center;
     transition: all 0.3s ease;
+    transform-origin: center;
 
     &.top,
     &.bottom {

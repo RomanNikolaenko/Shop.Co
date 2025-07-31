@@ -8,8 +8,8 @@
 }
 
 .otp-input {
-  @include fluid("width", 60, 34, 1024);
-  @include fluid("height", 60, 34, 1024);
+  @include fluid("inline-size", 60, 34, 1024);
+  @include fluid("block-size", 60, 34, 1024);
   @include fluid("font-size", 24, 20, 1024);
 
   border: rem(1) solid var(--color-dark);
@@ -30,7 +30,7 @@
 .otp-message {
   display: grid;
   gap: rem(4);
-  width: 100%;
+  inline-size: 100%;
   font-size: rem(13);
   line-height: 1.1;
   color: var(--error);

@@ -7,7 +7,7 @@
   flex-direction: column;
 
   @include mobile {
-    height: 100%;
+    block-size: 100%;
     background-color: rgb(164 161 170 / 20%);
     backdrop-filter: blur(rem(6));
   }
@@ -50,9 +50,9 @@
 
   &__input {
     flex: 1 1 auto;
-    width: 100%;
-    height: rem(48);
-    min-width: 0;
+    block-size: rem(48);
+    inline-size: 100%;
+    min-inline-size: 0;
     padding-inline-end: rem(12);
     outline: none;
   }
@@ -70,7 +70,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
+    inline-size: 100%;
     padding: rem(20);
     border: rem(1) solid var(--color-gray);
     border-radius: rem(28) rem(28) rem(20) rem(20);
@@ -83,9 +83,9 @@
 
   &__results-wrap {
     overflow-y: auto;
-    height: 100%;
-    max-height: min(rem(300), 70vh);
-    margin-top: rem(8);
+    block-size: 100%;
+    max-block-size: min(rem(300), 70vh);
+    margin-block-start: rem(8);
     word-wrap: break-word;
   }
 }

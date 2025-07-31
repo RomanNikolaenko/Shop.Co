@@ -2,18 +2,18 @@
 @use "styles/functions" as *;
 
 .error {
-  width: 100%;
+  inline-size: 100%;
 
   &__container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    inline-size: 100%;
     padding: rem(32) var(--container-padding-x);
   }
 
   &__404 {
-    margin-bottom: rem(8);
+    margin-block-end: rem(8);
     font-weight: 700;
 
     @include fluid("font-size", 97, 72, 768);
@@ -26,18 +26,18 @@
     @include fluid("font-size", 40, 24, 768);
 
     @supports (text-wrap: balance) {
-      max-width: rem(550);
+      max-inline-size: rem(550);
       text-wrap: balance;
     }
   }
 
   &__btn {
-    min-width: rem(240);
-    margin-top: rem(24);
+    min-inline-size: rem(240);
+    margin-block-start: rem(24);
   }
 
   &__copyright {
-    margin: rem(42) 0 0;
+    margin-block-start: rem(42);
     font-weight: 300;
     text-align: center;
 

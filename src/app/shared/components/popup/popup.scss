@@ -9,8 +9,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  block-size: 100%;
+  inline-size: 100%;
   background: rgb(164 161 170 / 20%);
   backdrop-filter: blur(rem(6));
   opacity: 0;
@@ -18,8 +18,8 @@
 
 .popup {
   position: relative;
-  max-width: calc(100% - var(--container-padding-x) * 2);
-  max-height: calc(100% - var(--container-padding-x) * 2);
+  max-inline-size: calc(100% - var(--container-padding-x) * 2);
+  max-block-size: calc(100% - var(--container-padding-x) * 2);
   padding: rem(20);
   border-radius: rem(12);
   background-color: var(--color-light);
@@ -36,9 +36,9 @@
     flex: 0 0 auto;
     justify-content: center;
     align-items: center;
-    width: rem(40);
-    height: rem(40);
-    margin-left: auto;
+    block-size: rem(40);
+    inline-size: rem(40);
+    margin-inline-start: auto;
     padding: 0;
     border: rem(1) solid currentcolor;
     border-radius: rem(4);

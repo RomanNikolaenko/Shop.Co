@@ -3,10 +3,8 @@
 
 .btn {
   position: relative;
-
   border-radius: 100vmax;
-
-  border: 1px solid transparent;
+  border: rem(1) solid transparent;
   user-select: none;
   overflow: hidden;
 
@@ -15,7 +13,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: rem(16) rem(24);
+    padding-block: rem(16);
+    padding-inline: rem(24);
     width: 100%;
   }
 
@@ -77,10 +76,10 @@
       left: calc(50% - rem(24) / 2);
       isolation: isolate;
       z-index: 4;
-      width: rem(24);
-      height: rem(24);
+      inline-size: rem(24);
+      block-size: rem(24);
       border: rem(2) solid var(--color-light);
-      border-top: rem(2) solid var(--color-dark);
+      border-block-start: rem(2) solid var(--color-dark);
       border-radius: 50%;
 
       animation: loadRotate 2s linear infinite;

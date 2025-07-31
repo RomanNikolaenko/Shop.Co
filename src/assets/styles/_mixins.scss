@@ -1,14 +1,11 @@
 @mixin fluid($property, $maxSize, $minSize, $maxWidth: 1440, $minWidth: 320) {
   #{$property}: clamp(
-    #{calc($minSize / 16) + rem},
+    #{($minSize / 16)}rem,
     calc(
-      #{calc($minSize / 16) + rem} + (#{$maxSize} - #{$minSize}) *
-        (
-          (100vw - #{calc($minWidth / 16) + rem}) /
-            (#{$maxWidth} - #{$minWidth})
-        )
+      #{($minSize / 16)}rem + (#{$maxSize} - #{$minSize}) *
+        ((100vw - #{($minWidth / 16)}rem) / (#{$maxWidth} - #{$minWidth}))
     ),
-    #{calc($maxSize / 16) + rem}
+    #{($maxSize / 16)}rem
   );
 }
 

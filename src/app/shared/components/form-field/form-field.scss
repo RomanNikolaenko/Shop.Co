@@ -2,7 +2,7 @@
 @use "styles/functions" as *;
 
 :host {
-  width: 100%;
+  inline-size: 100%;
 }
 
 .field {
@@ -10,24 +10,24 @@
   flex-direction: column;
   align-items: center;
   gap: rem(8);
-  width: 100%;
+  inline-size: 100%;
 
   &__wrap {
     position: relative;
-    width: 100%;
+    inline-size: 100%;
   }
 
   &__errors {
     display: grid;
     gap: rem(4);
-    width: 100%;
+    inline-size: 100%;
     font-size: rem(13);
     line-height: 1.1;
     color: var(--error);
   }
 
   &__hint {
-    width: 100%;
+    inline-size: 100%;
     font-size: rem(13);
     text-indent: rem(14);
   }
@@ -37,7 +37,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: 100%;
+  inline-size: 100%;
   transition: all var(--transition-duration) var(--transition-timing-function);
 
   @include fluid("height", 56, 42, 1024);
@@ -63,9 +63,10 @@
   }
 
   &__input {
-    width: 100%;
-    height: 100%;
-    padding: rem(16) rem(12) rem(6);
+    block-size: 100%;
+    inline-size: 100%;
+    padding-block: rem(16) rem(6);
+    padding-inline: rem(12);
     border: rem(1) solid var(--color-dark);
     border-radius: rem(10);
     outline: none;
@@ -88,7 +89,8 @@
     }
 
     .label-field__padding & {
-      padding: rem(16) rem(50) rem(6) rem(12);
+      padding-block: rem(16) rem(6);
+      padding-inline: rem(50) rem(12);
     }
 
     @include interactive {

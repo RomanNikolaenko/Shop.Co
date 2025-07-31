@@ -9,7 +9,7 @@
     display: inline-flex;
     align-items: center;
 
-    @include fluid("width", 160, 100);
+    @include fluid("inline-size", 160, 100);
 
     &:where([href]) {
       @include interactive {
@@ -20,7 +20,7 @@
 
   &__icon {
     display: inline-flex;
-    width: 100%;
+    inline-size: 100%;
     height: auto;
     color: inherit;
   }

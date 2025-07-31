@@ -45,7 +45,7 @@
   &__search {
     position: relative;
     z-index: 20;
-    width: 100%;
+    inline-size: 100%;
 
     @include mobile {
       position: fixed;
@@ -58,6 +58,6 @@
   }
 
   &__actions {
-    margin-left: auto;
+    margin-inline-start: auto;
   }
 }
