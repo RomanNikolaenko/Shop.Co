@@ -1,82 +1,94 @@
-import { A11yModule } from '@angular/cdk/a11y';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
   inject,
   OnInit,
-  PLATFORM_ID,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { FocusWithin } from '^directives/focusWithin';
-import { SearchService } from '^services/search';
+import { STATIC_ROUTES } from '^core/static-routes';
+import { UiStateService } from '^services/ui-state';
 import { dropdownAnim } from '^shared/animations/dropdown';
-import { popupAnim } from '^shared/animations/popup';
 import { Icon } from '^shared/components/icon/icon';
 
 @Component({
   selector: 'app-search',
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    Icon,
-    FocusWithin,
-    A11yModule,
-  ],
+  imports: [RouterLink, ReactiveFormsModule, TranslateModule, Icon],
   standalone: true,
   templateUrl: './search.html',
   styleUrl: './search.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [dropdownAnim, popupAnim],
+  animations: [dropdownAnim],
 })
 export class Search implements OnInit {
   private readonly formBuilder = inject(FormBuilder);
-  private readonly destroyRef = inject(DestroyRef);
-  private readonly searchService = inject(SearchService);
-  private readonly platformId = inject(PLATFORM_ID);
+  protected readonly uiStateService = inject(UiStateService);
+  protected readonly destroyRef = inject(DestroyRef);
 
-  protected readonly screenWidth = this.searchService.screenWidth;
-  protected readonly showFormSearch = this.searchService.showFormSearch;
-  protected readonly showBtnSearch = this.searchService.showBtnSearch;
-  protected readonly querySignal = this.searchService.querySignal;
-  protected readonly lowerCaseQuery = this.searchService.lowerCaseQuery;
+  protected readonly STATIC_ROUTES = STATIC_ROUTES;
+
+  protected readonly screenWidth = this.uiStateService.screenWidthSearch;
+  protected readonly showSearchResults = this.uiStateService.showSearchResults;
+
+  protected products = [
+    'iPhone 15',
+    'Samsung Galaxy S24',
+    'MacBook Pro',
+    'iPad Air',
+    'Apple Watch',
+  ];
+
+  protected filteredProducts: string[] = [];
+  protected showClearButton = false;
 
   protected form: FormGroup = this.formBuilder.group({
     query: [''],
   });
 
+  private get queryControl() {
+    return this.form.get('query');
+  }
+
   constructor() {
-    this.form.get('query')?.valueChanges.subscribe((value) => {
-      this.searchService.setQuery(value);
-    });
+    this.queryControl?.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value) => {
+        const query = (value ?? '').trim();
+
+        this.showClearButton = query.length > 0;
+        this.uiStateService.setQuery(query);
+
+        this.filteredProducts = this.products.filter((product) =>
+          product.toLowerCase().includes(query.toLowerCase()),
+        );
+      });
   }
 
   ngOnInit() {
-    this.searchService.initialize(this.destroyRef);
+    this.uiStateService.registerResetForm(() => {
+      this.form.reset();
+      this.showClearButton = false;
+      this.filteredProducts = [];
+    });
 
-    if (isPlatformBrowser(this.platformId)) {
-      this.searchService.updateScreenWidth(window.innerWidth);
-    }
-
-    this.form.reset();
-    this.searchService.setQuery('');
+    this.uiStateService.setQuery('');
   }
 
-  onBackgroundClick(event: MouseEvent): void {
+  protected onBackgroundClick(event: MouseEvent): void {
     if ((event.target as HTMLElement).classList.contains('search')) {
-      this.searchService.closeSearch();
+      this.uiStateService.closeSearch();
     }
   }
 
-  toggleSearch(): void {
-    this.searchService.toggleSearch();
+  protected clearQuery(): void {
+    this.queryControl?.setValue('');
   }
 
-  onSubmit(): void {
+  protected onSubmit(): void {
     const value = this.form.value.query;
     console.log('🔍 Search submitted:', value);
   }

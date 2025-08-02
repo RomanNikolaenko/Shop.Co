@@ -40,6 +40,9 @@ import { Icon } from '../icon/icon';
   ],
 })
 export class FormField implements ControlValueAccessor {
+  private readonly translate = inject(TranslateService);
+  private readonly cdr = inject(ChangeDetectorRef);
+
   @Input({ required: true }) label!: string;
   @Input({ required: true }) data!: AbstractControl;
   @Input({ required: true }) name!: string;
@@ -50,9 +53,6 @@ export class FormField implements ControlValueAccessor {
 
   protected value: string | number = '';
   protected typeInputPswrd: boolean = true;
-
-  private readonly translate = inject(TranslateService);
-  private readonly cdr = inject(ChangeDetectorRef);
 
   get containerClasses() {
     return {

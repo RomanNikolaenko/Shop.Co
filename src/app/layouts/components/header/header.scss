@@ -37,8 +37,35 @@
   }
 
   &__menu {
+    position: relative;
+    z-index: 20;
+    transition: none;
+
     @include tablet {
-      display: none;
+      visibility: hidden;
+      position: fixed;
+      inset: rem(74) 0 0;
+      background-color: rgb(164 161 170 / 20%);
+      backdrop-filter: blur(rem(6));
+      opacity: 0;
+    }
+
+    @include mobile {
+      top: rem(56);
+    }
+
+    @include mobile-s {
+      top: rem(48);
+    }
+
+    &--active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &--transition {
+      transition: all var(--transition-duration)
+        var(--transition-timing-function);
     }
   }
 
@@ -46,14 +73,29 @@
     position: relative;
     z-index: 20;
     inline-size: 100%;
+    transition: none;
 
     @include mobile {
+      visibility: hidden;
       position: fixed;
       inset: rem(56) 0 0;
+      background-color: rgb(164 161 170 / 20%);
+      backdrop-filter: blur(rem(6));
+      opacity: 0;
     }
 
     @include mobile-s {
       top: rem(48);
+    }
+
+    &--active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &--transition {
+      transition: all var(--transition-duration)
+        var(--transition-timing-function);
     }
   }
 

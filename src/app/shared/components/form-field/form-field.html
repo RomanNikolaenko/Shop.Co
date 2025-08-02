@@ -6,7 +6,8 @@
         (ngModelChange)="onChange($event)"
         (blur)="onTouch()"
         [type]="typeInputPswrd ? type : 'text'"
-        [name]="name"
+        [attr.name]="name"
+        autocomplete="off"
         class="label-field__input"
       />
       <span class="label-field__title">{{ label }}</span>

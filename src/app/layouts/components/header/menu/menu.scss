@@ -3,14 +3,34 @@
 @use "styles/media" as *;
 
 .nav {
+  block-size: 100%;
+
   &__list {
     display: flex;
-    align-items: center;
     gap: rem(24);
+
+    @include tablet-above {
+      align-items: center;
+    }
+
+    @include tablet {
+      flex-direction: column;
+      block-size: 100%;
+      inline-size: min(100%, rem(320));
+      box-shadow: 0 0 rem(8) rgb(0 0 0 / 10%);
+      padding-block: rem(34);
+      padding-inline: rem(20);
+      background-color: var(--color-light);
+      overflow-y: auto;
+    }
   }
 
   &__link {
     user-select: none;
+
+    @include tablet {
+      font-size: rem(20);
+    }
 
     &--active {
       span {

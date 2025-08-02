@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -38,7 +43,7 @@ export class Forgot {
   }
 
   protected form = this.formBuilder.nonNullable.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: new FormControl<string>('', [Validators.required, Validators.email]),
   });
 
   protected onSubmit() {

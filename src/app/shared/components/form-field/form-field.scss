@@ -90,7 +90,7 @@
 
     .label-field__padding & {
       padding-block: rem(16) rem(6);
-      padding-inline: rem(50) rem(12);
+      padding-inline: rem(12) rem(50);
     }
 
     @include interactive {

@@ -4,9 +4,12 @@
 
     <app-logo class="header__logo"></app-logo>
 
-    <app-menu class="header__menu"></app-menu>
+    <app-menu [ngClass]="containerClassesMenu" class="header__menu"></app-menu>
 
-    <app-search class="header__search"></app-search>
+    <app-search
+      [ngClass]="containerClassesSearch"
+      class="header__search"
+    ></app-search>
 
     <app-actions class="header__actions"></app-actions>
   </div>

@@ -1,7 +1,7 @@
 <button
   (click)="toggleMenu()"
-  [attr.aria-expanded]="true"
-  [class.active]="openMenu"
+  [attr.aria-expanded]="showMenu()"
+  [ngClass]="containerClasses"
   aria-controls="burger-menu"
   class="burger"
   type="button"

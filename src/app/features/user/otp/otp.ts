@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -43,8 +48,11 @@ export class Otp {
     };
   }
 
-  protected form = this.formBuilder.group({
-    otp: ['', [Validators.required, Validators.pattern(this.otpPattern)]],
+  protected form = this.formBuilder.nonNullable.group({
+    otp: new FormControl<string>('', [
+      Validators.required,
+      Validators.pattern(this.otpPattern),
+    ]),
   });
 
   protected onOtpBlur() {

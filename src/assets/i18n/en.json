@@ -18,7 +18,9 @@
     "label": "Site search",
     "input": "Enter search query",
     "perform": "Perform search",
-    "results": "Search results"
+    "clear": "Clear search",
+    "results": "Search results",
+    "noResults": "Nothing found"
   },
   "form": {
     "passwordAriaLabel": "Toggle password visibility",

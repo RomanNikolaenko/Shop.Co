@@ -8,8 +8,6 @@
 
   @include mobile {
     block-size: 100%;
-    background-color: rgb(164 161 170 / 20%);
-    backdrop-filter: blur(rem(6));
   }
 
   &__inner {
@@ -32,7 +30,7 @@
       border-radius: 0;
     }
 
-    &.focus-within {
+    &:focus-within {
       border-color: var(--color-dark);
     }
   }
@@ -42,6 +40,19 @@
     padding: rem(8);
     border-radius: 50%;
     outline: none;
+    color: var(--color-gray-alt);
+
+    @include interactive {
+      color: var(--color-dark);
+    }
+  }
+
+  &__submit {
+    margin-inline: rem(12) rem(4);
+  }
+
+  &__clear {
+    margin-inline: rem(4) rem(12);
   }
 
   &__btn-icon {
@@ -55,15 +66,6 @@
     min-inline-size: 0;
     padding-inline-end: rem(12);
     outline: none;
-  }
-
-  &__submit {
-    margin-inline: rem(12) rem(4);
-    color: var(--color-gray-alt);
-
-    @include interactive {
-      color: var(--color-dark);
-    }
   }
 
   &__results {
@@ -83,9 +85,15 @@
 
   &__results-wrap {
     overflow-y: auto;
-    block-size: 100%;
     max-block-size: min(rem(300), 70vh);
     margin-block-start: rem(8);
+    padding-block: rem(8) rem(12);
+    border-block-start: rem(1) solid var(--color-dark);
     word-wrap: break-word;
+  }
+
+  &__results-list {
+    display: grid;
+    gap: rem(12);
   }
 }
