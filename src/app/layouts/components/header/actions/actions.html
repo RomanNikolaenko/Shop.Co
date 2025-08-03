@@ -10,7 +10,7 @@
     <icon name="search" class="actions__icon"></icon>
   </button>
 
-  @if (isCurrentRoute(STATIC_ROUTES.SHOP.CH.CART.RouterLink)) {
+  @if (isCart()) {
     <span class="actions__link actions__link--active">
       <icon name="cart" class="actions__icon"></icon>
       <span class="visually-hidden">Cart</span>

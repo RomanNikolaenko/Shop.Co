@@ -1,7 +1,7 @@
 <nav (click)="onBackgroundClick($event)" class="nav">
   <ul class="nav__list">
     <li class="nav__item">
-      @if (isCurrentRoute(STATIC_ROUTES.ABOUT.RouterLink)) {
+      @if (isAbout()) {
         <span class="nav__link nav__link--active">
           <span>About</span>
         </span>
@@ -9,14 +9,13 @@
         <a
           [routerLink]="[STATIC_ROUTES.ABOUT.RouterLink]"
           routerLinkActive="nav__link--active"
-          [routerLinkActiveOptions]="{ exact: true }"
           class="nav__link text-decoration"
           ><span>About</span></a
         >
       }
     </li>
     <li class="nav__item">
-      @if (isCurrentRoute(STATIC_ROUTES.CONTACTS.RouterLink)) {
+      @if (isContact()) {
         <span class="nav__link nav__link--active">
           <span>Contact</span>
         </span>
@@ -24,7 +23,6 @@
         <a
           [routerLink]="[STATIC_ROUTES.CONTACTS.RouterLink]"
           routerLinkActive="nav__link--active"
-          [routerLinkActiveOptions]="{ exact: true }"
           class="nav__link text-decoration"
           ><span>Contact</span></a
         >

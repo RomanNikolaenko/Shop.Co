@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 
-import { LanguageService } from '^services/language.service';
+import { LanguageService } from '^services/language';
 import { dropdownAnim } from '^shared/animations/dropdown';
 
 import { Icon } from '../icon/icon';

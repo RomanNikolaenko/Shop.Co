@@ -1,8 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterModule, RouterLink, Router } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
+import { RouterModule, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { STATIC_ROUTES } from '^core/static-routes';
+import { IsCurrentRouteService } from '^services/is-current-route';
 import { UiStateService } from '^services/ui-state';
 import { Icon } from '^shared/components/icon/icon';
 
@@ -15,10 +21,15 @@ import { Icon } from '^shared/components/icon/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Actions {
-  private readonly router = inject(Router);
   private readonly uiStateService = inject(UiStateService);
+  private readonly isCurrentRouteService = inject(IsCurrentRouteService);
 
+  protected currentRoute = this.isCurrentRouteService.currentRoute;
   protected STATIC_ROUTES = STATIC_ROUTES;
+
+  protected isCart = computed(
+    () => this.currentRoute() === STATIC_ROUTES.SHOP.CH.CART.RouterLink,
+  );
 
   get showFormSearch() {
     return this.uiStateService.showFormSearch;
@@ -26,9 +37,5 @@ export class Actions {
 
   toggleSearch() {
     this.uiStateService.toggleSearch();
-  }
-
-  isCurrentRoute(route: string): boolean {
-    return this.router.url === route;
   }
 }

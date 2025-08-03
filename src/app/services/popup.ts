@@ -9,22 +9,36 @@ import {
   signal,
   inject,
   computed,
+  DestroyRef,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router, NavigationStart } from '@angular/router';
 
 import { Popup as PopupHostComponent } from '^shared/components/popup/popup';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class PopupService {
   private readonly appRef = inject(ApplicationRef);
   private readonly injector = inject(Injector);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
 
+  private readonly baseZIndex = 1000;
   private readonly popups = signal<ComponentRef<PopupHostComponent<object>>[]>(
     [],
   );
 
-  private readonly baseZIndex = 1000;
+  readonly popupCount = computed(() => this.popups().length);
+
+  constructor() {
+    this.router.events
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          this.closeAll();
+        }
+      });
+  }
 
   open<T extends object>(
     component: Type<T>,
@@ -35,10 +49,8 @@ export class PopupService {
       elementInjector: this.injector,
     });
 
-    const hostView = popupRef.hostView as EmbeddedViewRef<
-      PopupHostComponent<T>
-    >;
-    const domElem = hostView.rootNodes[0] as HTMLElement;
+    const domElem = (popupRef.hostView as EmbeddedViewRef<unknown>)
+      .rootNodes[0] as HTMLElement;
 
     const currentZIndex = this.baseZIndex + this.popups().length;
     domElem.style.zIndex = String(currentZIndex);
@@ -60,11 +72,17 @@ export class PopupService {
     ]);
   }
 
-  close(popupRef: ComponentRef<PopupHostComponent<object>>) {
+  close(popupRef: ComponentRef<PopupHostComponent<object>>): void {
     this.appRef.detachView(popupRef.hostView);
     popupRef.destroy();
     this.popups.update((list) => list.filter((p) => p !== popupRef));
   }
 
-  readonly popupCount = computed(() => this.popups().length);
+  closeAll(): void {
+    for (const ref of this.popups()) {
+      this.appRef.detachView(ref.hostView);
+      ref.destroy();
+    }
+    this.popups.set([]);
+  }
 }

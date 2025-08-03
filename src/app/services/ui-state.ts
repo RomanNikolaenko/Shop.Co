@@ -82,9 +82,8 @@ export class UiStateService {
   }
 
   initialize(): void {
-    this.updateScreenWidth(window.innerWidth);
-
     if (!this.isBrowser) return;
+    this.updateScreenWidth(window.innerWidth);
 
     fromEvent<KeyboardEvent>(window, 'keydown')
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -138,7 +137,7 @@ export class UiStateService {
     this.showMenu.update((event) => !event);
 
     if (this.showFormSearch()) {
-      this.showFormSearch.set(false)
+      this.showFormSearch.set(false);
     }
   }
 
@@ -171,7 +170,7 @@ export class UiStateService {
       }
 
       if (this.showMenu()) {
-        this.showMenu.set(false)
+        this.showMenu.set(false);
       }
     }
   }

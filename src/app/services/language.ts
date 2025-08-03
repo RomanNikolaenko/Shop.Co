@@ -1,13 +1,14 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
   Injectable,
-  Injector,
   PLATFORM_ID,
   inject,
   signal,
   WritableSignal,
   effect,
+  DestroyRef,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '^environments/environment';
@@ -20,7 +21,7 @@ export class LanguageService {
   private readonly translateService = inject(TranslateService);
   private readonly document = inject(DOCUMENT);
   private readonly platformId: object = inject(PLATFORM_ID);
-  private readonly injector = inject(Injector);
+  private readonly destroyRef = inject(DestroyRef);
   static readonly langKey = environment.LANGUAGE_KEY;
 
   readonly langs: WritableSignal<LangsModel[]> = signal([]);
@@ -29,6 +30,7 @@ export class LanguageService {
   constructor() {
     this.translateService
       .stream(['language.english', 'language.ukrainian'])
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((translations) => {
         this.langs.set([
           { value: 'en', viewValue: translations['language.english'] },
@@ -36,18 +38,15 @@ export class LanguageService {
         ]);
       });
 
-    effect(
-      () => {
-        const lang = this.currentLang();
-        this.translateService.setDefaultLang('en');
-        this.translateService.use(lang);
+    effect(() => {
+      const lang = this.currentLang();
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(lang);
 
-        if (isPlatformBrowser(this.platformId)) {
-          this.document.documentElement.lang = lang;
-        }
-      },
-      { injector: this.injector },
-    );
+      if (isPlatformBrowser(this.platformId)) {
+        this.document.documentElement.lang = lang;
+      }
+    });
   }
 
   public setLang(value: string): void {

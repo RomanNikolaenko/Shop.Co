@@ -1,12 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
 } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { STATIC_ROUTES } from '^core/static-routes';
+import { IsCurrentRouteService } from '^services/is-current-route';
 import { UiStateService } from '^services/ui-state';
 
 @Component({
@@ -18,14 +20,19 @@ import { UiStateService } from '^services/ui-state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Menu {
-  private readonly router = inject(Router);
   private readonly uiStateService = inject(UiStateService);
+  private readonly isCurrentRouteService = inject(IsCurrentRouteService);
 
+  protected currentRoute = this.isCurrentRouteService.currentRoute;
   protected STATIC_ROUTES = STATIC_ROUTES;
 
-  protected isCurrentRoute(route: string): boolean {
-    return this.router.url === route;
-  }
+  protected isAbout = computed(
+    () => this.currentRoute() === STATIC_ROUTES.ABOUT.RouterLink,
+  );
+
+  protected isContact = computed(
+    () => this.currentRoute() === STATIC_ROUTES.CONTACTS.RouterLink,
+  );
 
   protected onBackgroundClick(event: MouseEvent): void {
     if ((event.target as HTMLElement).classList.contains('nav')) {
