@@ -12,6 +12,9 @@ $mobile: rem(767.98);
 $mobile-s-above: rem(480);
 $mobile-s: rem(479.98);
 
+$mobile-ss-above: rem(420);
+$mobile-ss: rem(419.98);
+
 @mixin desktop-above {
   @media (min-width: $desktop-above) {
     @content;
@@ -56,6 +59,18 @@ $mobile-s: rem(479.98);
 
 @mixin mobile-s {
   @media (max-width: $mobile-s) {
+    @content;
+  }
+}
+
+@mixin mobile-ss-above {
+  @media (min-width: $mobile-ss-above) {
+    @content;
+  }
+}
+
+@mixin mobile-ss {
+  @media (max-width: $mobile-ss) {
     @content;
   }
 }

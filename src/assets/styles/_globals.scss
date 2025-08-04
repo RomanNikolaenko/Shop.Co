@@ -38,12 +38,12 @@ h4 {
 
 h1,
 .h1 {
-  @include fluid("font-size", 52, 38);
+  @include fluid("font-size", 64, 36);
 }
 
 h2,
 .h2 {
-  @include fluid("font-size", 42, 32);
+  @include fluid("font-size", 42, 30);
 }
 
 h3,
