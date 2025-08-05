@@ -7,7 +7,7 @@
 }
 
 :where(ul, ol):where([class]) {
-  padding-left: 0;
+  padding-inline-start: 0;
 }
 
 body,
@@ -20,7 +20,7 @@ body,
 }
 
 :where(dd[class]) {
-  margin-left: 0;
+  margin-inline-start: 0;
 }
 
 :where(fieldset[class]) {
@@ -43,14 +43,14 @@ p {
 }
 
 p:where(:not([class]):not(:last-child)) {
-  margin-bottom: var(--paragraphMarginBottom);
+  margin-block-end: var(--paragraphMarginBottom);
 }
 
 img,
 video {
   display: block;
-  max-width: 100%;
-  height: auto;
+  max-inline-size: 100%;
+  block-size: auto;
 }
 
 button,
@@ -68,13 +68,13 @@ textarea {
 }
 
 html {
-  height: 100%;
+  block-size: 100%;
   scrollbar-gutter: stable;
   scroll-behavior: smooth;
 }
 
 body {
-  min-height: 100%;
+  min-block-size: 100%;
   line-height: 1.5;
 }
 

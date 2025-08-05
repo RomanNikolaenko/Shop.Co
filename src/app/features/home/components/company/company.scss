@@ -1,0 +1,22 @@
+@use "styles/mixins" as *;
+@use "styles/functions" as *;
+
+.company {
+  background-color: var(--color-dark);
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: rem(20) rem(24);
+
+    @include fluid('padding-block', 50, 34);
+  }
+
+  &__logo {
+    display: inline-flex;
+    margin-inline: auto;
+    max-inline-size: rem(135);
+    user-select: none;
+  }
+}
