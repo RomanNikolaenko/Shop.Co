@@ -102,8 +102,13 @@ label {
   stroke: currentColor;
 }
 
-svg * {
-  transition-property: fill, stroke;
+svg {
+  block-size: 100%;
+  inline-size: 100%;
+
+  * {
+    transition-property: fill, stroke;
+  }
 }
 
 :where(table) {

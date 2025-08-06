@@ -37,6 +37,13 @@
     }
   }
 
+  &__logo {
+    display: inline-block;
+    flex: 0 0 auto;
+
+    @include fluid("inline-size", 160, 100);
+  }
+
   &__menu {
     position: relative;
     z-index: 20;

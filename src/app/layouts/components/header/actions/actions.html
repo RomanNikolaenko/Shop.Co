@@ -7,12 +7,22 @@
     type="button"
   >
     <span class="visually-hidden">{{ "search.open" | translate }}</span>
-    <icon name="search" class="actions__icon"></icon>
+    <icon
+      name="search"
+      role="img"
+      aria-hidden="true"
+      class="actions__icon"
+    ></icon>
   </button>
 
   @if (isCart()) {
     <span class="actions__link actions__link--active">
-      <icon name="cart" class="actions__icon"></icon>
+      <icon
+        name="cart"
+        role="img"
+        aria-hidden="true"
+        class="actions__icon"
+      ></icon>
       <span class="visually-hidden">Cart</span>
     </span>
   } @else {
@@ -20,7 +30,12 @@
       [routerLink]="[STATIC_ROUTES.SHOP.CH.CART.RouterLink]"
       class="actions__link"
     >
-      <icon name="cart" class="actions__icon"></icon>
+      <icon
+        name="cart"
+        role="img"
+        aria-hidden="true"
+        class="actions__icon"
+      ></icon>
       <span class="visually-hidden">Cart</span>
     </a>
   }
@@ -30,7 +45,12 @@
     routerLinkActive="actions__link--active"
     class="actions__link"
   >
-    <icon name="login" class="actions__icon"></icon>
+    <icon
+      name="login"
+      role="img"
+      aria-hidden="true"
+      class="actions__icon"
+    ></icon>
     <span class="visually-hidden">Authorization</span>
   </a>
 </div>

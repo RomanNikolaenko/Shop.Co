@@ -13,9 +13,10 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-block: rem(16);
     padding-inline: rem(24);
     inline-size: 100%;
+
+    @include fluid("padding-block", 16, 12);
   }
 
   &__black {
@@ -79,7 +80,7 @@
       inline-size: rem(24);
       block-size: rem(24);
       border: rem(2) solid var(--color-light);
-      border-block-start: rem(2) solid var(--color-dark);
+      border-block-start-color: var(--color-dark);
       border-radius: 50%;
 
       animation: loadRotate 2s linear infinite;

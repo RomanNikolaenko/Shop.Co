@@ -63,5 +63,21 @@
       "passwordPattern": "Password must be should contain numbers, special characters and uppercase letters.",
       "customServerError": "Server error: {{message}}"
     }
+  },
+  "header": {
+    "ariaLabel": "Navigation at the top of the page"
+  },
+  "footer": {
+    "text": "We have clothes that suits your style and which you’re proud to wear. From women to men.",
+    "reserved": "All rights reserved.",
+    "ariaLabel": "Navigation at the bottom of the page",
+    "form": {
+      "title": "Stay up to date about our latest offers",
+      "email": "Email address",
+      "btn": "Subscribe to Newsletter"
+    }
+  },
+  "hero": {
+    "company": "Companies we cooperate with"
   }
 }

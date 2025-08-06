@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { fromEvent } from 'rxjs';
+import { debounceTime, fromEvent, startWith } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -97,7 +97,11 @@ export class UiStateService {
       });
 
     fromEvent(window, 'resize')
-      .pipe(takeUntilDestroyed(this.destroyRef))
+      .pipe(
+        debounceTime(150),
+        startWith(null),
+        takeUntilDestroyed(this.destroyRef),
+      )
       .subscribe(() => {
         this.updateScreenWidth(window.innerWidth);
       });

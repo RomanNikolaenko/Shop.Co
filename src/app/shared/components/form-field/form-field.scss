@@ -40,7 +40,7 @@
   inline-size: 100%;
   transition: all var(--transition-duration) var(--transition-timing-function);
 
-  @include fluid("height", 56, 42, 1024);
+  @include fluid("block-size", 56, 50, 1024);
 
   &__title {
     position: absolute;
@@ -68,9 +68,10 @@
     padding-block: rem(16) rem(6);
     padding-inline: rem(12);
     border: rem(1) solid var(--color-dark);
-    border-radius: rem(10);
+    border-radius: rem(12);
     outline: none;
     line-height: 1;
+    background-color: var(--color-light);
 
     &:focus-visible,
     .label-field__active & {

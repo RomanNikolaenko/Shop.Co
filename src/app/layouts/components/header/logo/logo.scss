@@ -9,8 +9,6 @@
     display: inline-flex;
     align-items: center;
 
-    @include fluid("inline-size", 160, 100);
-
     &:where([href]) {
       @include interactive {
         color: var(--color-gray-alt);

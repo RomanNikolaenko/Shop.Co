@@ -1,4 +1,8 @@
-<nav (click)="onBackgroundClick($event)" class="nav">
+<nav
+  (click)="onBackgroundClick($event)"
+  attr.aria-label="{{ 'header.ariaLabel' | translate }}"
+  class="nav"
+>
   <ul class="nav__list">
     <li class="nav__item">
       @if (isAbout()) {

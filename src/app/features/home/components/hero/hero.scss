@@ -134,6 +134,7 @@
   }
 
   &__count {
+    user-select: none;
     font-weight: 500;
 
     @include fluid("font-size", 40, 24);

@@ -30,19 +30,19 @@
       background-size: 100% auto;
 
       &.login__bg {
-        background-image: url("/assets/images/auth/login.jpg");
+        @include retina-bg("login", "webp", "assets/images/auth", false);
       }
 
       &.register__bg {
-        background-image: url("/assets/images/auth/create.jpg");
+        @include retina-bg("create", "webp", "assets/images/auth", false);
       }
 
       &.forgot__bg {
-        background-image: url("/assets/images/auth/forgot.jpg");
+        @include retina-bg("forgot", "webp", "assets/images/auth", false);
       }
 
       &.otp__bg {
-        background-image: url("/assets/images/auth/otp.jpg");
+        @include retina-bg("otp", "webp", "assets/images/auth", false);
       }
     }
   }

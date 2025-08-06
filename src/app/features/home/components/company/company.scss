@@ -2,6 +2,7 @@
 @use "styles/functions" as *;
 
 .company {
+  position: relative;
   background-color: var(--color-dark);
 
   &__container {
@@ -10,13 +11,15 @@
     justify-content: center;
     gap: rem(20) rem(24);
 
-    @include fluid('padding-block', 50, 34);
+    @include fluid("padding-block", 50, 34);
   }
 
   &__logo {
-    display: inline-flex;
-    margin-inline: auto;
-    max-inline-size: rem(135);
     user-select: none;
+    display: inline-flex;
+    width: auto;
+    height: auto;
+    max-block-size: rem(27);
+    margin-inline: auto;
   }
 }

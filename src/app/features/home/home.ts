@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { Hero } from './components/hero/hero';
 import { Company } from './components/company/company';
+import { Hero } from './components/hero/hero';
 
 @Component({
   selector: 'app-home',

@@ -10,7 +10,12 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="search__form">
       <button class="search__btn search__submit" type="submit">
         <span class="visually-hidden">{{ "search.perform" | translate }}</span>
-        <icon name="search" class="search__btn-icon"></icon>
+        <icon
+          name="search"
+          role="img"
+          aria-hidden="true"
+          class="search__btn-icon"
+        ></icon>
       </button>
       <label for="search-input" class="visually-hidden">{{
         "search.label" | translate
@@ -31,7 +36,12 @@
           class="search__btn search__clear"
           (click)="clearQuery()"
         >
-          <icon name="close" class="search__btn-icon"></icon>
+          <icon
+            name="close"
+            role="img"
+            aria-hidden="true"
+            class="search__btn-icon"
+          ></icon>
           <span class="visually-hidden">{{ "search.clear" | translate }}</span>
         </button>
       }

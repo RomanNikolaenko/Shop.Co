@@ -20,7 +20,11 @@
         class="label-field__type"
         attr.aria-label="{{ 'form.passwordAriaLabel' | translate }}"
       >
-        <icon [name]="typeInputPswrd ? 'eye' : 'eye-hide'"></icon>
+        <icon
+          [name]="typeInputPswrd ? 'eye' : 'eye-hide'"
+          role="img"
+          aria-hidden="true"
+        ></icon>
       </button>
     }
   </div>
