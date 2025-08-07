@@ -79,5 +79,9 @@
   },
   "hero": {
     "company": "Companies we cooperate with"
+  },
+  "rating": {
+    "ariaLabel": "Product rating on a five-point scale",
+    "star": "star"
   }
 }

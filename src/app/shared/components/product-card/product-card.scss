@@ -1,0 +1,62 @@
+@use "styles/functions" as *;
+@use "styles/mixins" as *;
+
+.card {
+  &__image {
+    display: flex;
+    justify-content: center;
+    border-radius: rem(20);
+    background-color: var(--color-gray);
+    transition-property: box-shadow;
+
+    @include interactive {
+      box-shadow: 0 0 rem(3) var(--color-gray-alt);
+    }
+  }
+
+  &__img {
+    inline-size: 100%;
+    width: auto;
+    height: auto;
+    max-block-size: rem(300);
+    object-fit: contain;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: rem(8);
+    margin-block-start: rem(16);
+  }
+
+  &__title {
+    @include fluid("font-size", 20, 16);
+  }
+
+  &__currency {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: rem(8);
+    font-weight: 700;
+  }
+
+  &__price {
+    @include fluid("font-size", 24, 20);
+
+    &-old {
+      color: var(--color-gray-alt);
+    }
+  }
+
+  &__save {
+    padding-block: rem(8);
+    padding-inline: rem(13);
+    border-radius: 100vmax;
+    font-weight: 400;
+    color: var(--color-pink);
+    background-color: var(--color-pink-alt);
+
+    @include fluid("font-size", 12, 10);
+  }
+}
