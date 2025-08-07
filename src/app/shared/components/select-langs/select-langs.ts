@@ -10,13 +10,14 @@ import { LanguageService } from '^services/language';
 import { dropdownAnim } from '^shared/animations/dropdown';
 
 import { Icon } from '../icon/icon';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'select-langs',
   templateUrl: './select-langs.html',
   styleUrls: ['./select-langs.scss'],
   standalone: true,
-  imports: [Icon],
+  imports: [Icon, TranslateModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [dropdownAnim],
 })

@@ -28,6 +28,7 @@
 
     @include interactive {
       color: var(--color-gray-alt);
+      filter: contrast(0.5);
     }
 
     @include mobile-s-above {

@@ -1,19 +1,26 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  DestroyRef,
   inject,
+  PLATFORM_ID,
+  signal,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { STATIC_ROUTES } from '^core/static-routes';
 import { IsCurrentRouteService } from '^services/is-current-route';
 import { UiStateService } from '^services/ui-state';
+import { SelectLangs } from '^shared/components/select-langs/select-langs';
+import { fromEvent, startWith, map } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterModule, TranslateModule],
+  imports: [RouterModule, TranslateModule, SelectLangs],
   standalone: true,
   templateUrl: './menu.html',
   styleUrl: './menu.scss',
@@ -23,8 +30,15 @@ export class Menu {
   private readonly uiStateService = inject(UiStateService);
   private readonly isCurrentRouteService = inject(IsCurrentRouteService);
 
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
+
   protected currentRoute = this.isCurrentRouteService.currentRoute;
   protected STATIC_ROUTES = STATIC_ROUTES;
+
+  protected showLangSelect = signal(true);
+  protected showBreakpoint = 450;
 
   protected isAbout = computed(
     () => this.currentRoute() === STATIC_ROUTES.ABOUT.RouterLink,
@@ -33,6 +47,20 @@ export class Menu {
   protected isContact = computed(
     () => this.currentRoute() === STATIC_ROUTES.CONTACTS.RouterLink,
   );
+
+  ngOnInit(): void {
+    if (!this.isBrowser) return;
+
+    fromEvent(window, 'resize')
+      .pipe(
+        startWith(null),
+        map(() => window.innerWidth > this.showBreakpoint),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe((value) => {
+        this.showLangSelect.set(value)
+      });
+  }
 
   protected onBackgroundClick(event: MouseEvent): void {
     if ((event.target as HTMLElement).classList.contains('nav')) {

@@ -9,6 +9,9 @@
   outline: none;
   font-family: inherit;
   background-color: var(--color-light);
+  box-shadow: 0 0 rem(10) transparent;
+  user-select: none;
+  transition: box-shadow var(--transition-duration) var(--transition-timing-function);
 
   @include interactive {
     box-shadow: 0 0 rem(10) var(--color-dark);
@@ -28,8 +31,7 @@
     flex: 0 0 auto;
     block-size: rem(16);
     inline-size: rem(16);
-    transition: transform var(--transition-duration)
-      var(--transition-timing-function);
+    transition: transform var(--transition-duration) var(--transition-timing-function);
 
     &--open {
       transform: rotate(180deg);
@@ -56,8 +58,7 @@
     padding-inline: rem(12);
     cursor: pointer;
     transition:
-      background-color var(--transition-duration)
-        var(--transition-timing-function),
+      background-color var(--transition-duration) var(--transition-timing-function),
       color var(--transition-duration) var(--transition-timing-function);
 
     &:hover,

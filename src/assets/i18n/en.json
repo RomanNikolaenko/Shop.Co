@@ -1,7 +1,13 @@
 {
-  "goHome": "Go home",
-  "send": "Send",
-  "back": "Back",
+  "button": {
+    "goHome": "Go home",
+    "send": "Send",
+    "back": "Back",
+    "viewAll": "View all"
+  },
+  "langSelect": {
+    "ariaLabel": "Language selection"
+  },
   "notFound": {
     "title": "The page you’re looking for can’t be found!"
   },
@@ -28,7 +34,7 @@
     "notAccount": "Don't have an account?",
     "haveAccount": "Already have an account?",
     "loginTitle": "Authorization",
-    "registerTitle": "Register",
+    "registerTitle": "Registration",
     "firstName": "First name",
     "lastName": "Last name",
     "email": "Email",

@@ -6,7 +6,7 @@
   role="listbox"
   [attr.aria-haspopup]="'listbox'"
   [attr.aria-expanded]="isOpen()"
-  aria-label="Language selector"
+  [attr.aria-label]="'langSelect.ariaLabel' | translate"
 >
   <div class="select__trigger" (click)="toggleDropdown()">
     {{ currentLang()?.viewValue || "Select language" }}

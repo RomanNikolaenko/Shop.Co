@@ -22,8 +22,7 @@
     border: rem(1) solid var(--color-gray);
     border-radius: 100vmax;
     background-color: var(--color-gray);
-    transition: border var(--transition-duration)
-      var(--transition-timing-function);
+    transition: border var(--transition-duration) var(--transition-timing-function);
     overflow: hidden;
 
     @include mobile {
@@ -42,8 +41,14 @@
     outline: none;
     color: var(--color-gray-alt);
 
-    @include interactive {
-      color: var(--color-dark);
+    &:not([disabled]) {
+      @include interactive {
+        color: var(--color-dark);
+      }
+    }
+
+    &--disabled {
+      cursor: not-allowed;
     }
   }
 

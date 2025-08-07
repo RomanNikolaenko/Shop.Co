@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -46,7 +46,7 @@ export class Search implements OnInit {
   protected showClearButton = false;
 
   protected form: FormGroup = this.formBuilder.group({
-    query: [''],
+    query: ['', [Validators.required]],
   });
 
   private get queryControl() {

@@ -2,11 +2,17 @@
 @use "styles/mixins" as *;
 
 .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+
   &__image {
     display: flex;
     justify-content: center;
     border-radius: rem(20);
     background-color: var(--color-gray);
+    box-shadow: 0 0 rem(3) transparent;
     transition-property: box-shadow;
 
     @include interactive {
@@ -20,25 +26,33 @@
     height: auto;
     max-block-size: rem(300);
     object-fit: contain;
+    pointer-events: none;
   }
 
   &__info {
     display: flex;
     flex-direction: column;
+    flex: 1 1 auto;
     gap: rem(8);
     margin-block-start: rem(16);
   }
 
   &__title {
+    margin-block-end: auto;
     @include fluid("font-size", 20, 16);
+  }
+
+  &__link {
+    user-select: all;
   }
 
   &__currency {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: rem(8);
-    font-weight: 700;
+    gap: rem(12);
+    font-weight: 500;
+    user-select: none;
   }
 
   &__price {
@@ -46,16 +60,23 @@
 
     &-old {
       color: var(--color-gray-alt);
+      text-decoration: line-through;
+      opacity: 0.4;
     }
   }
 
   &__save {
+    position: absolute;
+    top: rem(8);
+    left: rem(8);
     padding-block: rem(8);
     padding-inline: rem(13);
     border-radius: 100vmax;
     font-weight: 400;
     color: var(--color-pink);
     background-color: var(--color-pink-alt);
+    pointer-events: none;
+    user-select: none;
 
     @include fluid("font-size", 12, 10);
   }
