@@ -1,3 +1,5 @@
+@use "styles/functions" as *;
+
 @mixin fluid($property, $maxSize, $minSize, $maxWidth: 1440, $minWidth: 320) {
   #{$property}: clamp(
     #{($minSize / 16)}rem,
@@ -42,7 +44,7 @@
 
   span {
     background-image: linear-gradient(to right, currentColor, currentColor);
-    background-size: 0 2px;
+    background-size: 0 rem(2);
     background-position: right bottom;
     background-repeat: no-repeat;
     transition: inherit;
@@ -57,7 +59,7 @@
     span {
       color: currentColor;
       background-position: left bottom;
-      background-size: 100% 2px;
+      background-size: 100% rem(2);
     }
   }
 }

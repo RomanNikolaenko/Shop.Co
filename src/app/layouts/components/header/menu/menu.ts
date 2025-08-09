@@ -11,12 +11,12 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { fromEvent, startWith, map } from 'rxjs';
 
 import { STATIC_ROUTES } from '^core/static-routes';
 import { IsCurrentRouteService } from '^services/is-current-route';
 import { UiStateService } from '^services/ui-state';
 import { SelectLangs } from '^shared/components/select-langs/select-langs';
-import { fromEvent, startWith, map } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -58,7 +58,7 @@ export class Menu {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe((value) => {
-        this.showLangSelect.set(value)
+        this.showLangSelect.set(value);
       });
   }
 

@@ -7,5 +7,5 @@ export interface CardModel {
   price: {
     new: number;
     old?: number;
-  }
+  };
 }

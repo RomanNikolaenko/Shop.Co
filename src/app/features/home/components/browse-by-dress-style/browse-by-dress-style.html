@@ -1,0 +1,21 @@
+<section class="browse container">
+  <div class="browse__container">
+    <h2 class="browse__title">BROWSE BY dress STYLE</h2>
+
+    <div class="browse__list">
+      @for (item of data; track $index) {
+        <a [routerLink]="'/'" class="browse__item">
+          <span class="browse__item-title">{{ item.title }}</span>
+          <img
+            [src]="item.src"
+            [srcset]="item.srcset"
+            class="browse__item-img"
+            width="407"
+            height="289"
+            [alt]="item.alt"
+          />
+        </a>
+      }
+    </div>
+  </div>
+</section>

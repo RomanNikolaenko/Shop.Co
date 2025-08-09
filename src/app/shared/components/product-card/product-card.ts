@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+import { CardModel } from '^interfaces/card';
 
 import { Rating } from '../rating/rating';
-import { RouterLink } from '@angular/router';
-import { CardModel } from '^interfaces/card';
 
 @Component({
   selector: 'product-card',
@@ -13,5 +14,5 @@ import { CardModel } from '^interfaces/card';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductCard {
-  @Input({required: true}) data!: CardModel;
+  @Input({ required: true }) data!: CardModel;
 }

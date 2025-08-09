@@ -17,7 +17,7 @@ import { ExpansionPanel } from '../expansion-panel/expansion-panel';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Main {
-  protected readonly array: Array<ExpansionPanelModel> = [
+  protected readonly array: ExpansionPanelModel[] = [
     {
       title: 'Company',
       list: ['About', 'Features', 'Works', 'Career'],

@@ -8,7 +8,12 @@
 >
   <div class="search__inner">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="search__form">
-      <button class="search__btn search__submit" type="submit" [class.search__btn--disabled]="form.invalid" [disabled]="form.invalid">
+      <button
+        class="search__btn search__submit"
+        type="submit"
+        [class.search__btn--disabled]="form.invalid"
+        [disabled]="form.invalid"
+      >
         <span class="visually-hidden">{{ "search.perform" | translate }}</span>
         <icon
           name="search"

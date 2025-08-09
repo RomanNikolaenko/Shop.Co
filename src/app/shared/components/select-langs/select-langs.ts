@@ -5,12 +5,12 @@ import {
   inject,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { LanguageService } from '^services/language';
 import { dropdownAnim } from '^shared/animations/dropdown';
 
 import { Icon } from '../icon/icon';
-import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'select-langs',

@@ -11,17 +11,25 @@
     gap: rem(8);
     margin-block-end: rem(12);
     padding: 0;
+    outline: none;
     text-align: left;
     text-transform: uppercase;
 
     &[disabled] {
       cursor: auto;
     }
+
+    &:not([disabled]) {
+      @include interactive {
+        color: var(--color-gray-alt);
+      }
+    }
   }
 
   &__icon {
     flex: 0 0 auto;
-    transform: scale(0.7);
+    margin-block-start: rem(3);
+    transform: scale(0.7) rotate(0);
     transition: transform var(--transition-duration)
       var(--transition-timing-function);
 

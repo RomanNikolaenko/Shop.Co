@@ -19,19 +19,20 @@
     }
 
     &::before {
+      content: "";
       position: absolute;
       z-index: -1;
-      top: 0;
-      left: 50%;
+      inset-block-start: 0;
+      inset-inline-start: 50%;
       block-size: 50%;
       inline-size: 100vw;
       background-color: var(--color-light);
-      content: "";
       transform: translateX(-50%);
     }
   }
 
   &__title {
+    max-inline-size: rem(700);
     font-weight: 700;
     text-transform: uppercase;
     text-wrap: balance;

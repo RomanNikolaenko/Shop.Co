@@ -10,9 +10,9 @@
   &__image {
     display: flex;
     justify-content: center;
+    box-shadow: 0 0 rem(3) transparent;
     border-radius: rem(20);
     background-color: var(--color-gray);
-    box-shadow: 0 0 rem(3) transparent;
     transition-property: box-shadow;
 
     @include interactive {
@@ -31,14 +31,15 @@
 
   &__info {
     display: flex;
-    flex-direction: column;
     flex: 1 1 auto;
+    flex-direction: column;
     gap: rem(8);
     margin-block-start: rem(16);
   }
 
   &__title {
     margin-block-end: auto;
+
     @include fluid("font-size", 20, 16);
   }
 
@@ -47,28 +48,29 @@
   }
 
   &__currency {
+    user-select: none;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: rem(12);
     font-weight: 500;
-    user-select: none;
   }
 
   &__price {
     @include fluid("font-size", 24, 20);
 
     &-old {
-      color: var(--color-gray-alt);
       text-decoration: line-through;
+      color: var(--color-gray-alt);
       opacity: 0.4;
     }
   }
 
   &__save {
+    user-select: none;
     position: absolute;
-    top: rem(8);
-    left: rem(8);
+    inset-block-start: rem(8);
+    inset-inline-start: rem(8);
     padding-block: rem(8);
     padding-inline: rem(13);
     border-radius: 100vmax;
@@ -76,7 +78,6 @@
     color: var(--color-pink);
     background-color: var(--color-pink-alt);
     pointer-events: none;
-    user-select: none;
 
     @include fluid("font-size", 12, 10);
   }

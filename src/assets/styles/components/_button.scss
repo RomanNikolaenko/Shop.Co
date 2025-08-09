@@ -73,8 +73,8 @@
     &::before {
       content: "";
       position: absolute;
-      top: calc(50% - rem(24) / 2);
-      left: calc(50% - rem(24) / 2);
+      inset-inline-start: calc(50% - rem(24) / 2);
+      inset-block-start: calc(50% - rem(24) / 2);
       isolation: isolate;
       z-index: 4;
       inline-size: rem(24);

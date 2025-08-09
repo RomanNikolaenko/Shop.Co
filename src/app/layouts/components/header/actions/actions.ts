@@ -12,13 +12,13 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterModule, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { fromEvent, startWith, map } from 'rxjs';
 
 import { STATIC_ROUTES } from '^core/static-routes';
 import { IsCurrentRouteService } from '^services/is-current-route';
 import { UiStateService } from '^services/ui-state';
 import { Icon } from '^shared/components/icon/icon';
 import { SelectLangs } from '^shared/components/select-langs/select-langs';
-import { fromEvent, debounceTime, startWith, map } from 'rxjs';
 
 @Component({
   selector: 'app-actions',
@@ -38,7 +38,6 @@ export class Actions implements OnInit {
 
   protected currentRoute = this.isCurrentRouteService.currentRoute;
   protected STATIC_ROUTES = STATIC_ROUTES;
-  
 
   protected showLangSelect = signal(true);
   protected showBreakpoint = 450;
@@ -61,7 +60,7 @@ export class Actions implements OnInit {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe((value) => {
-        this.showLangSelect.set(value)
+        this.showLangSelect.set(value);
       });
   }
 

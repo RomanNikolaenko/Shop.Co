@@ -54,6 +54,7 @@
       "pointer-events",
       "user-select",
       "-webkit-user-select",
+      "content",
       "position",
       "z-index",
       "inset",

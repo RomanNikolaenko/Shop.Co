@@ -33,21 +33,21 @@
     &.top,
     &.bottom {
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
     }
 
     &.top {
-      top: rem(4);
+      inset-block-start: rem(4);
     }
 
     &.bottom {
-      bottom: rem(4);
+      inset-block-end: rem(4);
     }
   }
 
   &.active {
     .top {
-      top: calc(50% - rem(1));
+      inset-block-start: calc(50% - rem(1));
       transform: rotate(45deg);
     }
 
@@ -56,7 +56,7 @@
     }
 
     .bottom {
-      bottom: calc(50% - rem(1));
+      inset-block-end: calc(50% - rem(1));
       transform: rotate(-45deg);
     }
   }

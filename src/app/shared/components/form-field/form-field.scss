@@ -44,8 +44,8 @@
 
   &__title {
     position: absolute;
-    top: 50%;
-    left: rem(12);
+    inset-block-start: 50%;
+    inset-inline-start: rem(12);
     color: inherit;
     pointer-events: none;
     transition: all var(--transition-duration) var(--transition-timing-function);
