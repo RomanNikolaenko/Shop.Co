@@ -7,11 +7,12 @@ import { Products } from '^shared/components/products/products';
 import { BrowseByDressStyle } from './components/browse-by-dress-style/browse-by-dress-style';
 import { Company } from './components/company/company';
 import { Hero } from './components/hero/hero';
+import { Slider } from './components/slider/slider';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [Hero, Company, Products, BrowseByDressStyle],
+  imports: [Hero, Company, Products, BrowseByDressStyle, Slider],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,7 +22,9 @@ export class Home {
     {
       url: '/',
       title: 'SKINNY FIT JEANS',
-      img: 'assets/images/card.png',
+      src: 'assets/images/card/card@1x.webp',
+      srcset:
+        'assets/images/card/card@1x.webp 1x, assets/images/card/card@2x.webp 2x, assets/images/card/card@3x.webp 3x',
       alt: 'Назва картинки',
       price: {
         new: 268,
@@ -32,7 +35,9 @@ export class Home {
     {
       url: '/',
       title: 'LOOSE FIT BERMUDA SHORTS',
-      img: 'assets/images/card.png',
+      src: 'assets/images/card/card@1x.webp',
+      srcset:
+        'assets/images/card/card@1x.webp 1x, assets/images/card/card@2x.webp 2x, assets/images/card/card@3x.webp 3x',
       alt: 'Назва картинки',
       price: {
         new: 352,
@@ -46,30 +51,30 @@ export class Home {
     {
       title: 'Casual',
       alt: 'Casual',
-      src: 'assets/images/browse/image@1x.jpg',
+      src: 'assets/images/browse/image@1x.webp',
       srcset:
-        'assets/images/browse/image@1x.jpg 1x, assets/images/browse/image@2x.jpg 2x, assets/images/browse/image@3x.jpg 3x',
+        'assets/images/browse/image@1x.webp 1x, assets/images/browse/image@2x.webp 2x, assets/images/browse/image@3x.webp 3x',
     },
     {
       title: 'Formal',
       alt: 'Formal',
-      src: 'assets/images/browse/image@1x.jpg',
+      src: 'assets/images/browse/image@1x.webp',
       srcset:
-        'assets/images/browse/image@1x.jpg 1x, assets/images/browse/image@2x.jpg 2x, assets/images/browse/image@3x.jpg 3x',
+        'assets/images/browse/image@1x.webp 1x, assets/images/browse/image@2x.webp 2x, assets/images/browse/image@3x.webp 3x',
     },
     {
       title: 'Party',
       alt: 'Party',
-      src: 'assets/images/browse/image@1x.jpg',
+      src: 'assets/images/browse/image@1x.webp',
       srcset:
-        'assets/images/browse/image@1x.jpg 1x, assets/images/browse/image@2x.jpg 2x, assets/images/browse/image@3x.jpg 3x',
+        'assets/images/browse/image@1x.webp 1x, assets/images/browse/image@2x.webp 2x, assets/images/browse/image@3x.webp 3x',
     },
     {
       title: 'Gym',
       alt: 'Gym',
-      src: 'assets/images/browse/image@1x.jpg',
+      src: 'assets/images/browse/image@1x.webp',
       srcset:
-        'assets/images/browse/image@1x.jpg 1x, assets/images/browse/image@2x.jpg 2x, assets/images/browse/image@3x.jpg 3x',
+        'assets/images/browse/image@1x.webp 1x, assets/images/browse/image@2x.webp 2x, assets/images/browse/image@3x.webp 3x',
     },
   ];
 }

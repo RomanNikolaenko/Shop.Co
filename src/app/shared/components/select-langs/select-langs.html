@@ -3,7 +3,7 @@
   tabindex="0"
   (blur)="closeDropdown()"
   (keydown)="onKeydown($event)"
-  role="listbox"
+  role="button"
   [attr.aria-haspopup]="'listbox'"
   [attr.aria-expanded]="isOpen()"
   [attr.aria-label]="'langSelect.ariaLabel' | translate"
@@ -20,7 +20,12 @@
   </div>
 
   @if (isOpen()) {
-    <ul @flyInBottom class="select__options">
+    <ul
+      @flyInBottom
+      class="select__options"
+      role="listbox"
+      [attr.aria-activedescendant]="'option-' + focusedIndex()"
+    >
       @for (lang of langs(); let i = $index; track lang.value) {
         <li
           class="select__option"

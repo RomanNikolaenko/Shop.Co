@@ -1,7 +1,8 @@
 export interface CardModel {
   url: string;
   title: string;
-  img: string;
+  src: string;
+  srcset: string;
   alt: string;
   save?: string;
   price: {

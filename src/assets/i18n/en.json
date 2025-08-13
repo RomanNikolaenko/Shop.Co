@@ -89,5 +89,10 @@
   "rating": {
     "ariaLabel": "Product rating on a five-point scale",
     "star": "star"
+  },
+  "customers": {
+    "title": "Our happy customers",
+    "prev": "Previous slide",
+    "next": "Next slide"
   }
 }
