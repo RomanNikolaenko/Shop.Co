@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
+    "build": "ng build --configuration production --base-href 'https://RomanNikolaenko.github.io/Shop.Co/'",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:shopCo": "node --no-deprecation dist/ShopCo/server/server.mjs",
