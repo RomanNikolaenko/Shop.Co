@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "dist/shop-co/browser"
+  functions = "api"
+
+[dev]
+  command = "ng serve"
+  port = 4300
+  functionPort = 3000
+  publish = "dist/shop-co/browser"
