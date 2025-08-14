@@ -8,3 +8,6 @@
   port = 4300
   functionPort = 3000
   publish = "dist/shop-co/browser"
+
+[plugins]
+  package = "@netlify/angular-runtime"
