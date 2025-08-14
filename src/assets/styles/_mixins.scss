@@ -64,7 +64,7 @@
   }
 }
 
-@mixin retina-bg($name, $ext: "webp", $path: "assets", $all: true) {
+@mixin retina-bg($name, $ext: "webp", $path: "/assets", $all: true) {
   background-image: url("#{$path}/#{$name}@1x.#{$ext}");
 
   @if ($all) {

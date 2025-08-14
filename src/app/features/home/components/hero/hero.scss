@@ -48,7 +48,7 @@
     position: relative;
     margin-block-end: rem(-50);
 
-    @include retina-bg("hero", "webp", "assets/images/hero");
+    @include retina-bg("hero", "webp", "/assets/images/hero");
 
     @include tablet {
       position: absolute;
@@ -63,7 +63,7 @@
     &::after {
       content: "";
       position: absolute;
-      background-image: url("assets/images/icons/star.svg");
+      background-image: url("/assets/images/icons/star.svg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
