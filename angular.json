@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Shop.Co": {
+    "shop-co": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -74,10 +74,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Shop.Co:build:production"
+              "buildTarget": "shop-co:build:production"
             },
             "development": {
-              "buildTarget": "Shop.Co:build:development"
+              "buildTarget": "shop-co:build:development"
             }
           },
           "defaultConfiguration": "development"

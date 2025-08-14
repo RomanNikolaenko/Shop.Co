@@ -1,13 +1,13 @@
 {
-  "name": "shop.co",
+  "name": "shop-co",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production --base-href '/Shop.Co/'",
-    "build:ssr": "ng build --configuration production --base-href '/Shop.Co/' && ng run Shop.Co:server",
-    "deploy": "npx gh-pages -d dist/Shop.Co/browser",
+    "build": "ng build --configuration production --base-href /shop-co/",
+    "build:ssr": "ng build --configuration production --base-href /shop-co/ && ng run shop-co:server",
+    "deploy": "npx gh-pages -d dist/shop-co/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:shopCo": "node --no-deprecation dist/ShopCo/server/server.mjs",
