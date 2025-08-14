@@ -1,10 +1,17 @@
 [build]
   command = "npm run build"
+  functions = "./functions"
   publish = "dist/shop-co/browser"
-  functions = "api"
 
 [dev]
-  command = "ng serve"
-  port = 4300
-  functionPort = 3000
-  publish = "dist/shop-co/browser"
+  command = "npm run start"
+  functions = "./functions"
+  publish = "src"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[plugins]]
+  package = "@netlify/plugin-angular-universal"
