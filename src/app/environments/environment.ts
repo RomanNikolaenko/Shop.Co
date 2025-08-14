@@ -4,9 +4,8 @@
 
 export const environment = {
   production: false,
-  BASE_API_URL: 'http://localhost:1899/api',
-  LANGUAGE_KEY: 'LANGKEY',
-  TOKEN_KEY: 'TOKENKEY',
+  baseHref: '',
+  languageKey: 'LANGKEY',
 };
 
 /*

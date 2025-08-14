@@ -22,7 +22,7 @@ export class LanguageService {
   private readonly document = inject(DOCUMENT);
   private readonly platformId: object = inject(PLATFORM_ID);
   private readonly destroyRef = inject(DestroyRef);
-  static readonly langKey = environment.LANGUAGE_KEY;
+  static readonly langKey = environment.languageKey;
 
   readonly langs: WritableSignal<LangsModel[]> = signal([]);
   readonly currentLang: WritableSignal<string> = signal(this.getLang());
