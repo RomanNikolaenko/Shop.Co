@@ -32,6 +32,7 @@
     --span: 12;
 
     position: relative;
+    grid-column: span var(--span);
     border-radius: rem(20);
     color: var(--color-dark);
     background-color: var(--color-light);
@@ -40,21 +41,13 @@
 
     @include fluid("max-block-size", 290, 190);
 
-    &:nth-child(4n + 1),
-    &:nth-child(4n + 4) {
-      grid-column: span var(--span);
+    @include tablet-above {
+      @for $i from 1 through 4 {
+        $span: if($i == 2 or $i == 3, 8, 4);
 
-      @include tablet-above {
-        --span: 4;
-      }
-    }
-
-    &:nth-child(4n + 2),
-    &:nth-child(4n + 3) {
-      grid-column: span var(--span);
-
-      @include tablet-above {
-        --span: 8;
+        &:nth-child(4n + #{$i}) {
+          --span: #{$span};
+        }
       }
     }
 

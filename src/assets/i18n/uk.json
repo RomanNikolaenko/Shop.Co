@@ -94,5 +94,16 @@
     "title": "Наші задоволені клієнти",
     "prev": "Попередній слайд",
     "next": "Наступний слайд"
+  },
+  "swiper": {
+    "containerMessage": "Це карусель з відгуками.",
+    "containerRoleDescriptionMessage": "Секція каруселі",
+    "firstSlideMessage": "Це перший слайд",
+    "lastSlideMessage": "Це останній слайд",
+    "nextSlideMessage": "Наступний слайд",
+    "prevSlideMessage": "Попередній слайд",
+    "itemRoleDescriptionMessage": "Слайд з відгуком",
+    "paginationBulletMessage": "Перейти до слайда {{index}}",
+    "slideLabelMessage": "Слайд {{index}} з {{slidesLength}}"
   }
 }

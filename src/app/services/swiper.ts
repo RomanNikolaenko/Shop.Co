@@ -1,11 +1,11 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { SwiperOptions } from 'swiper/types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SwiperService {
-  private defaultOptions: SwiperOptions = {
+  private readonly defaultOptions: SwiperOptions = {
     centeredSlides: false,
     spaceBetween: 20,
     speed: 1500,
@@ -14,36 +14,27 @@ export class SwiperService {
       disableOnInteraction: false,
     },
     loop: true,
-    navigation: {
+    a11y: {
       enabled: true,
-      prevEl: '.slider__prev',
-      nextEl: '.slider__next',
+      containerRole: 'region',
+      notificationClass: 'swiper-notification',
+      scrollOnFocus: true,
+      slideRole: 'group',
+    },
+    navigation: {
+      enabled: false,
     },
     breakpoints: {
-      0: {
-        slidesPerView: 1,
-      },
-      480: {
-        slidesPerView: 1.5,
-      },
-      768: {
-        slidesPerView: 2,
-      },
-      1024: {
-        slidesPerView: 3,
-      },
+      0: { slidesPerView: 1 },
+      480: { slidesPerView: 1.5 },
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
     },
   };
 
-  protected optionsSignal: WritableSignal<SwiperOptions> = signal(
-    this.defaultOptions,
-  );
+  private readonly optionsSignal = signal(this.defaultOptions);
 
-  getOptions() {
+  getOptions(): SwiperOptions {
     return this.optionsSignal();
-  }
-
-  setOptions(newOptions: Partial<typeof this.defaultOptions>) {
-    this.optionsSignal.set({ ...this.optionsSignal(), ...newOptions });
   }
 }

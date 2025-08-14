@@ -94,5 +94,16 @@
     "title": "Our happy customers",
     "prev": "Previous slide",
     "next": "Next slide"
+  },
+  "swiper": {
+    "containerMessage": "This is a carousel of testimonials.",
+    "containerRoleDescriptionMessage": "Carousel section",
+    "firstSlideMessage": "This is the first slide",
+    "lastSlideMessage": "This is the last slide",
+    "nextSlideMessage": "Next slide",
+    "prevSlideMessage": "Previous slide",
+    "itemRoleDescriptionMessage": "Testimonial slide",
+    "paginationBulletMessage": "Go to slide {{index}}",
+    "slideLabelMessage": "Slide {{index}} of {{slidesLength}}"
   }
 }
