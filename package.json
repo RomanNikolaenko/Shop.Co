@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production --base-href /shop-co/",
-    "build:ssr": "ng build --configuration production --base-href /shop-co/ && ng run shop-co:server",
+    "build": "ng build --configuration production",
+    "build:ssr": "ng build --configuration production && ng run shop-co:server",
     "deploy": "npx gh-pages -d dist/shop-co/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
