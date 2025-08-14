@@ -1,17 +1,14 @@
 import { join } from 'node:path';
+import { fileURLToPath } from 'url'; // для перетворення import.meta.url на шлях
+import { AngularAppEngine, createRequestHandler } from '@netlify/angular-runtime';
+import express from 'express';
 
-import {
-  AngularNodeAppEngine,
-  createNodeRequestHandler,
-  isMainModule,
-  writeResponseToNodeResponse,
-} from '@angular/ssr/node';
-import express, { static as expressStatic } from 'express';
-
-const browserDistFolder = join(import.meta.dirname, '../browser');
+// Визначаємо шлях до папки dist/browser
+const __dirname = fileURLToPath(new URL('.', import.meta.url)); // отримуємо директорію
+const browserDistFolder = join(__dirname, '../browser'); // шлях до dist/browser
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+const angularApp = new AngularAppEngine();
 
 /**
  * Example Express Rest API endpoints can be defined here.
@@ -29,7 +26,7 @@ const angularApp = new AngularNodeAppEngine();
  * Serve static files from /browser
  */
 app.use(
-  expressStatic(browserDistFolder, {
+  express.static(browserDistFolder, {
     maxAge: '1y',
     index: false,
     redirect: false,
@@ -40,11 +37,12 @@ app.use(
  * Handle all other requests by rendering the Angular application.
  * Переписано на async/await для коректної роботи з promise/no-callback-in-promise
  */
-app.use(async(req, res, next) => {
+app.use(async (req, res, next) => {
   try {
     const response = await angularApp.handle(req);
     if (response) {
-      writeResponseToNodeResponse(response, res);
+      res.status(response.status || 200);
+      res.send(response.body);
     } else {
       next();
     }
@@ -54,22 +52,7 @@ app.use(async(req, res, next) => {
 });
 
 /**
- * Start the server if this module is the main entry point.
- * The server listens on the port defined by the `PORT` environment variable,
- * or defaults to 4000.
- */
-if (isMainModule(import.meta.url)) {
-  const port = process.env['PORTSERVER'] || 4000;
-  app.listen(port, (error) => {
-    if (error) {
-      throw error;
-    }
-    console.log(`Node Express server listen on http://localhost:${port}`);
-  });
-}
-
-/**
- * Request handler used by the  ngular CL I (for dev-server and during build)
+ * Request handler used by the Netlify CLI (for dev-server and during build)
  * or Firebase Cloud Functions.
  */
-export const reqHandler = createNodeRequestHandler(app);
+export const reqHandler = createRequestHandler(app);

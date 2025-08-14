@@ -1,17 +1,16 @@
 [build]
-  command = "npm run build"
-  functions = "./functions"
   publish = "dist/shop-co/browser"
+  command = "npm run build"
 
 [dev]
-  command = "npm run start"
-  functions = "./functions"
-  publish = "src"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  command = "npm run dev"
+  port = 3000
+  targetPort = 3000
 
 [[plugins]]
   package = "@netlify/angular-runtime"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.csr.html"
+  status = 200
