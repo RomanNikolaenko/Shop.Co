@@ -6,6 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration production --base-href '/Shop.Co/'",
+    "build:ssr": "ng build && ng run Shop.Co:server",
     "deploy": "npx gh-pages -d dist/Shop.Co/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
