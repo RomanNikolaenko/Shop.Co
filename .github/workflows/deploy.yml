@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular SSR
-        run: npm run build:ssr
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

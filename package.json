@@ -10,7 +10,7 @@
     "deploy": "npx gh-pages -d dist/shop-co/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:shopCo": "node --no-deprecation dist/ShopCo/server/server.mjs",
+    "serve:ssr:shop-co": "node --no-deprecation dist/shop-co/server/server.mjs",
     "prepare": "npx lefthook install",
     "lint:prettier": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",

@@ -1,0 +1,7 @@
+[build]
+publish = "dist/shop-co/browser"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.csr.html"
+  status = 200
