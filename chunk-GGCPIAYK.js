@@ -1,0 +1,1 @@
+import{Ja as o,hb as c,ib as n,wb as a}from"./chunk-SRAVIVSI.js";import"./chunk-7CGTOI24.js";var i=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=o({type:t,selectors:[["app-checkout"]],decls:2,vars:0,template:function(e,p){e&1&&(c(0,"p"),a(1,"checkout works!"),n())},encapsulation:2,changeDetection:0})};export{i as Checkout};

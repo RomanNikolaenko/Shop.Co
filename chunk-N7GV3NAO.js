@@ -1,0 +1,1 @@
+import{Ja as a,hb as n,ib as o,wb as r}from"./chunk-SRAVIVSI.js";import"./chunk-7CGTOI24.js";var c=class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=a({type:e,selectors:[["app-cart"]],decls:2,vars:0,template:function(t,s){t&1&&(n(0,"p"),r(1,"cart works!"),o())},encapsulation:2,changeDetection:0})};export{c as Cart};
