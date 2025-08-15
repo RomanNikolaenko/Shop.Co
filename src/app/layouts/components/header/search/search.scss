@@ -1,6 +1,6 @@
-@use "mixins" as *;
-@use "functions" as *;
-@use "media" as *;
+@use "styles/mixins" as *;
+@use "styles/functions" as *;
+@use "styles/media" as *;
 
 .search {
   display: flex;

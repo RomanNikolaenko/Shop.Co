@@ -1,6 +1,6 @@
-@use "mixins" as *;
-@use "functions" as *;
-@use "media" as *;
+@use "styles/mixins" as *;
+@use "styles/functions" as *;
+@use "styles/media" as *;
 
 .user {
   block-size: 100%;
@@ -30,19 +30,59 @@
       background-size: 100% auto;
 
       &.login__bg {
-        @include retina-bg("login", "webp", "assets/images/auth", false);
+        background-image: url("../../../assets/images/auth/login@1x.webp");
+
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+          background-image: url("../../../assets/images/auth/login@1x.webp");
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 3),
+        (min-resolution: 288dpi) {
+          background-image: url("../../../assets/images/auth/login@1x.webp");
+        }
       }
 
       &.register__bg {
-        @include retina-bg("create", "webp", "assets/images/auth", false);
+        background-image: url("../../../assets/images/auth/create@1x.webp");
+
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+          background-image: url("../../../assets/images/auth/create@1x.webp");
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 3),
+        (min-resolution: 288dpi) {
+          background-image: url("../../../assets/images/auth/create@1x.webp");
+        }
       }
 
       &.forgot__bg {
-        @include retina-bg("forgot", "webp", "assets/images/auth", false);
+        background-image: url("../../../assets/images/auth/forgot@1x.webp");
+
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+          background-image: url("../../../assets/images/auth/forgot@1x.webp");
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 3),
+        (min-resolution: 288dpi) {
+          background-image: url("../../../assets/images/auth/forgot@1x.webp");
+        }
       }
 
       &.otp__bg {
-        @include retina-bg("otp", "webp", "assets/images/auth", false);
+        background-image: url("../../../assets/images/auth/otp@1x.webp");
+
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+          background-image: url("../../../assets/images/auth/otp@1x.webp");
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 3),
+        (min-resolution: 288dpi) {
+          background-image: url("../../../assets/images/auth/otp@1x.webp");
+        }
       }
     }
   }

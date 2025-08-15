@@ -1,5 +1,5 @@
-@use "mixins" as *;
-@use "functions" as *;
+@use "styles/mixins" as *;
+@use "styles/functions" as *;
 
 :host {
   inline-size: 100%;

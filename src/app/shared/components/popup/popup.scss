@@ -1,5 +1,5 @@
-@use "functions" as *;
-@use "mixins" as *;
+@use "styles/functions" as *;
+@use "styles/mixins" as *;
 
 .popup-backdrop {
   position: fixed;

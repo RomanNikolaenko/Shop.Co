@@ -38,8 +38,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src",
-                "src/assets/styles/"
+                "src/assets"
               ]
             },
             "prerender": true,
@@ -80,7 +79,13 @@
           "options": {
             "outputPath": "dist/shop-co/server",
             "main": "src/main.server.ts",
-            "tsConfig": "tsconfig.server.json"
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets"
+              ]
+            }
           },
           "configurations": {
             "production": {

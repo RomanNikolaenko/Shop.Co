@@ -1,8 +1,8 @@
 @forward "swiper/scss";
 
-@use "mixins" as *;
-@use "functions" as *;
-@use "media" as *;
+@use "styles/mixins" as *;
+@use "styles/functions" as *;
+@use "styles/media" as *;
 
 .customers {
   @include fluid("margin-block-start", 80, 40);
