@@ -1,14 +1,17 @@
 import { join } from 'node:path';
-import { fileURLToPath } from 'url'; // для перетворення import.meta.url на шлях
-import { AngularAppEngine, createRequestHandler } from '@netlify/angular-runtime';
-import express from 'express';
 
-// Визначаємо шлях до папки dist/browser
-const __dirname = fileURLToPath(new URL('.', import.meta.url)); // отримуємо директорію
-const browserDistFolder = join(__dirname, '../browser'); // шлях до dist/browser
+import {
+  AngularNodeAppEngine,
+  createNodeRequestHandler,
+  isMainModule,
+  writeResponseToNodeResponse,
+} from '@angular/ssr/node';
+import express, { static as expressStatic } from 'express';
+
+const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
-const angularApp = new AngularAppEngine();
+const angularApp = new AngularNodeAppEngine();
 
 /**
  * Example Express Rest API endpoints can be defined here.
@@ -26,7 +29,7 @@ const angularApp = new AngularAppEngine();
  * Serve static files from /browser
  */
 app.use(
-  express.static(browserDistFolder, {
+  expressStatic(browserDistFolder, {
     maxAge: '1y',
     index: false,
     redirect: false,
@@ -41,8 +44,7 @@ app.use(async (req, res, next) => {
   try {
     const response = await angularApp.handle(req);
     if (response) {
-      res.status(response.status || 200);
-      res.send(response.body);
+      writeResponseToNodeResponse(response, res);
     } else {
       next();
     }
@@ -52,7 +54,22 @@ app.use(async (req, res, next) => {
 });
 
 /**
- * Request handler used by the Netlify CLI (for dev-server and during build)
+ * Start the server if this module is the main entry point.
+ * The server listens on the port defined by the `PORT` environment variable,
+ * or defaults to 4000.
+ */
+if (isMainModule(import.meta.url)) {
+  const port = process.env['PORTSERVER'] || 4000;
+  app.listen(port, (error) => {
+    if (error) {
+      throw error;
+    }
+    console.log(`Node Express server listen on http://localhost:${port}`);
+  });
+}
+
+/**
+ * Request handler used by the  ngular CL I (for dev-server and during build)
  * or Firebase Cloud Functions.
  */
-export const reqHandler = createRequestHandler(app);
+export const reqHandler = createNodeRequestHandler(app);

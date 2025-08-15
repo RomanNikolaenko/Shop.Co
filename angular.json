@@ -19,6 +19,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/shop-co",
             "browser": "src/main.ts",
             "index": "src/index.html",
             "tsConfig": "tsconfig.app.json",
@@ -36,19 +37,15 @@
             "stylePreprocessorOptions": {
               "includePaths": ["src/assets"]
             },
+            "prerender": true,
             "server": "src/main.server.ts",
-            "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
             }
           },
           "configurations": {
             "production": {
-              "optimization": {
-                "scripts": true,
-                "styles": true,
-                "fonts": true
-              },
+              "optimization": true,
               "budgets": [
                 {
                   "type": "initial",
