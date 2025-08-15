@@ -16,3 +16,4 @@
 
 [[plugins]]
   package = "@netlify/angular-runtime"
+  version = "3.0.0"
