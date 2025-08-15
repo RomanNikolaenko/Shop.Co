@@ -78,7 +78,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/shop-co",
+            "outputPath": "dist/shop-co/server",
             "main": "src/main.server.ts",
             "tsConfig": "tsconfig.server.json"
           },
