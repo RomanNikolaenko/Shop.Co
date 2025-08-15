@@ -1,19 +1,19 @@
 {
-  "compileOnSave": true,
   "compilerOptions": {
-    "strict": true,
-    "composite": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "types": [
+      "node"
+    ],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "baseUrl": "./src",
+    "outDir": "./dist/shop-co/server",
     "paths": {
       "^assets": [
         "./assets"
@@ -87,14 +87,13 @@
       "^shared/*": [
         "./app/shared/*"
       ]
-    }
+    },
   },
+  "files": [
+    "./src/main.server.ts"
+  ],
   "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "typeCheckHostBindings": true,
-    "strictTemplates": true
+    "enableIvy": true
   },
   "include": [
     "src"
@@ -109,10 +108,10 @@
   ],
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "./tsconfig.server.app.json"
     },
     {
-      "path": "./tsconfig.spec.json"
+      "path": "./tsconfig.server.spec.json"
     }
   ]
 }

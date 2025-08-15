@@ -132,7 +132,6 @@ export class UiStateService {
     this.showBtnSearch.set(isMobileSearch);
   }
 
-  /// Menu
   private showMenuFn(width: number) {
     this.showMenu.set(width >= this.mobileBreakpointMenu);
   }
@@ -149,7 +148,6 @@ export class UiStateService {
     this.showMenu.set(false);
   }
 
-  /// / search
   private resetFormFn: (() => void) | null = null;
 
   private resetForm(): void {

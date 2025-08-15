@@ -1,6 +1,6 @@
-@use "styles/functions" as *;
-@use "styles/mixins" as *;
-@use "styles/media" as *;
+@use "functions" as *;
+@use "mixins" as *;
+@use "media" as *;
 
 .form {
   &__container {

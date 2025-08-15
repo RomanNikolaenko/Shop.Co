@@ -33,9 +33,14 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/assets"]
+              "includePaths": [
+                "src",
+                "src/assets/styles/"
+              ]
             },
             "prerender": true,
             "server": "src/main.server.ts",
@@ -65,7 +70,22 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
-              "baseHref": "/" 
+              "baseHref": "/"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/shop-co",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all"
             }
           },
           "defaultConfiguration": "production"

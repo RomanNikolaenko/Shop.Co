@@ -1,7 +1,7 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { App } from 'app/app';
+import { App } from './app';
 
 describe('App', () => {
   beforeEach(async() => {

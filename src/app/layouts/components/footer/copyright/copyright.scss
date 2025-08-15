@@ -1,6 +1,6 @@
-@use "styles/mixins" as *;
-@use "styles/functions" as *;
-@use "styles/media" as *;
+@use "mixins" as *;
+@use "functions" as *;
+@use "media" as *;
 
 .copyright {
   display: flex;
@@ -19,8 +19,11 @@
 
   &__payments {
     display: flex;
-    flex-wrap: wrap;
     gap: rem(12);
+
+    @include mobile-s {
+      flex-wrap: wrap;
+    }
   }
 
   &__text {

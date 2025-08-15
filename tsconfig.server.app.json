@@ -1,8 +1,8 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.server.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/spec",
-    "types": ["jasmine", "node"]
+    "outDir": "./out-tsc/app",
+    "types": ["node"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "__tests__"],
