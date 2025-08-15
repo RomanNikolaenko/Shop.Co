@@ -16,8 +16,3 @@
 
 [[plugins]]
   package = "@netlify/angular-runtime"
-
-[plugins.inputs]
-runtimeVersion = "3.0.0"
-useServerless = true  
-outputDirectory = "dist/shop-co/browser"
