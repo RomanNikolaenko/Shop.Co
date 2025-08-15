@@ -15,4 +15,4 @@
   status = 200
 
 [[plugins]]
-  package = "@netlify/angular-runtime@3.0.0"
+  package = "@netlify/angular-runtime"
